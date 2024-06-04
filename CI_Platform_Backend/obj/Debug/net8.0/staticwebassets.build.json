@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "0pftVzisJ+K6/hIqPM0mg1wpJ6IZebJSXCQaNXuGWB0=",
+  "Source": "CI_Platform_Backend",
+  "BasePath": "_content/CI_Platform_Backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

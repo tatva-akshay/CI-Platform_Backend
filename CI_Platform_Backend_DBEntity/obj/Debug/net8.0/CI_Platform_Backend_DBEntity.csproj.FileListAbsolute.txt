@@ -1,0 +1,12 @@
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.deps.json
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.dll
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.pdb
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.AssemblyInfoInputs.cache
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.AssemblyInfo.cs
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.csproj.CoreCompileInputs.cache
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.dll
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\refint\CI_Platform_Backend_DBEntity.dll
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.pdb
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\ref\CI_Platform_Backend_DBEntity.dll
+D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.csproj.AssemblyReference.cache

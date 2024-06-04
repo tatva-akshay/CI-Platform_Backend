@@ -1,0 +1,17 @@
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Utilities.deps.json
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Utilities.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Utilities.pdb
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Presentation.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.pdb
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Presentation.pdb
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.csproj.AssemblyReference.cache
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.GeneratedMSBuildEditorConfig.editorconfig
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.AssemblyInfoInputs.cache
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.AssemblyInfo.cs
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.csproj.CoreCompileInputs.cache
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platf.83169ACC.Up2Date
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\refint\CI_Platform_Backend_Utilities.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.pdb
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\ref\CI_Platform_Backend_Utilities.dll
