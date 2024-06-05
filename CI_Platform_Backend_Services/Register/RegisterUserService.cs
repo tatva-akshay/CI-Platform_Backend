@@ -12,7 +12,7 @@ public class RegisterUserService : IRegisterUserService
         _userRepo = userRepo;
     }
 
-    public async Task<bool> RegisterUserAsync(User user)
+    public async Task<bool> RegisterUserAsync(CI_Platform_Backend_DBEntity.DataModels.User user)
     {
         return await _userRepo.AddAsync(user);
     }

@@ -1,0 +1,60 @@
+using CI_Platform_Backend_Presentation.DTO.CMSPages;
+using CI_Platform_Backend_Repository.CMSPrivacyPolicyRepo;
+
+namespace CI_Platform_Backend_Services.CMSPage;
+
+public class CMSPageService : ICMSPageService
+{
+    private readonly ICMSPrivacyPolicyRepo _cMSPrivacyPolicyRepo;
+
+    public CMSPageService(ICMSPrivacyPolicyRepo cMSPrivacyPolicyRepo)
+    {
+        _cMSPrivacyPolicyRepo = cMSPrivacyPolicyRepo;
+    }
+
+    public async Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicyTemp = await _cMSPrivacyPolicyRepo.GetAsync(x => x.PageTitle == cmsPrivacyPolicy.PageTitle);
+        if(cmsPrivacyPolicyTemp == null || cmsPrivacyPolicyTemp.CmsId == 0)
+        {
+            return await _cMSPrivacyPolicyRepo.AddAsync(cmsPrivacyPolicy);
+        }
+        return false;
+    }
+    
+    public async Task<bool> UpdateAsync(long id, CreateCMSPageDTO cMSPageDTO)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+        if(cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0)
+        {
+            return false;
+        }        
+
+        cmsPrivacyPolicy.PageTitle = cMSPageDTO.Title;
+        cmsPrivacyPolicy.PageDescription = cMSPageDTO.Description;
+        cmsPrivacyPolicy.Slug = cMSPageDTO.Slug;
+        cmsPrivacyPolicy.Status = cMSPageDTO.IsActive;
+
+        return await _cMSPrivacyPolicyRepo.UpdateAsync(cmsPrivacyPolicy);
+    }
+
+    public async Task<List<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy>> GetCMSPagesAsync()
+    {
+        return await _cMSPrivacyPolicyRepo.GetAsync();
+    }
+
+    public async Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(long id)
+    {
+        return await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+    }
+
+    public async Task<bool> DeleteAsync(long id)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+        if(cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0)
+        {
+            return false;
+        }  
+        return await _cMSPrivacyPolicyRepo.DeleteAsync(cmsPrivacyPolicy);
+    }
+}

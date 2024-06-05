@@ -15,3 +15,4 @@ D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Repository\obj\De
 D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Repository\obj\Debug\net8.0\ref\CI_Platform_Backend_Repository.dll
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Repository\bin\Debug\net8.0\CI_Platform_Backend_Presentation.dll
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Repository\bin\Debug\net8.0\CI_Platform_Backend_Presentation.pdb
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Repository\obj\Debug\net8.0\CI_Platform_Backend_Repository.sourcelink.json

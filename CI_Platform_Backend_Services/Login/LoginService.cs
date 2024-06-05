@@ -1,4 +1,3 @@
-using CI_Platform_Backend_DBEntity.DataModels;
 using CI_Platform_Backend_Presentation.DTO.Login;
 using CI_Platform_Backend_Repository.UserRepo;
 
@@ -15,7 +14,7 @@ public class LoginService : ILoginService
 
     public async Task<bool> IsValidUserAsync(LoginDTO loginDTO)
     {
-        User user = await _userRepo.GetByEmailAsync(loginDTO.Email);
+        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.Email == loginDTO.Email);
      
         if(user == null || user.UserId == 0)
         {
@@ -26,7 +25,27 @@ public class LoginService : ILoginService
 
     public async Task<bool> IsUserExistAsync(string email)
     {
-        User user = await _userRepo.GetByEmailAsync(email);
+        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.Email == email);
         return !(user == null || user.UserId == 0);
+    }
+
+    public async Task<bool> ResetPasswordAsync(string email, string password)
+    {
+
+        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.Email == email);
+     
+        if(user == null || user.UserId == 0)
+        {
+            return false;
+        }
+
+        user.Password = password;
+
+        if(await _userRepo.UpdateAsync(user))
+        {
+            return true;
+        }
+
+        return false;
     }
 }

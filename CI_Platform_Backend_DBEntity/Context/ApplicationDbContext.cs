@@ -24,6 +24,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Comment> Comments { get; set; }
 
+    public virtual DbSet<ContactUss> ContactUsses { get; set; }
+
     public virtual DbSet<Country> Countries { get; set; }
 
     public virtual DbSet<LoginCarousel> LoginCarousels { get; set; }
@@ -45,6 +47,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<Theme> Themes { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UserInformation> UserInformations { get; set; }
 
     public virtual DbSet<VolunteeringTimesheet> VolunteeringTimesheets { get; set; }
 
@@ -83,6 +87,15 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__comments__user_i__03F0984C");
+        });
+
+        modelBuilder.Entity<ContactUss>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__contact___3213E83FD5BC3CF2");
+
+            entity.HasOne(d => d.User).WithMany(p => p.ContactUsses)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__contact_u__user___1EA48E88");
         });
 
         modelBuilder.Entity<Country>(entity =>
@@ -180,6 +193,15 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.City).WithMany(p => p.Users).HasConstraintName("FK__user__city_id__778AC167");
 
             entity.HasOne(d => d.Country).WithMany(p => p.Users).HasConstraintName("FK__user__country_id__787EE5A0");
+        });
+
+        modelBuilder.Entity<UserInformation>(entity =>
+        {
+            entity.HasKey(e => e.InformationId).HasName("PK__user_inf__26E2EF41C1B8A04F");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UserInformations)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__user_info__user___2180FB33");
         });
 
         modelBuilder.Entity<VolunteeringTimesheet>(entity =>

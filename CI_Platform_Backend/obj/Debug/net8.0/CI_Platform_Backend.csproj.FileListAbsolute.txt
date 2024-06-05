@@ -147,3 +147,4 @@ d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend\bin\Debug\net8.0\
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend\bin\Debug\net8.0\CI_Platform_Backend_Utilities.dll
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend\bin\Debug\net8.0\CI_Platform_Backend_Utilities.pdb
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend\obj\Debug\net8.0\CI_Platform_Backend.sourcelink.json

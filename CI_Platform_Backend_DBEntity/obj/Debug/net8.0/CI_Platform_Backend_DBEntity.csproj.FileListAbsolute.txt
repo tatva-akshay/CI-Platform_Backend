@@ -10,3 +10,4 @@ D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debu
 D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.pdb
 D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\ref\CI_Platform_Backend_DBEntity.dll
 D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.csproj.AssemblyReference.cache
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_DBEntity\obj\Debug\net8.0\CI_Platform_Backend_DBEntity.sourcelink.json

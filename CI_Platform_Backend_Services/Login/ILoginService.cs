@@ -8,5 +8,7 @@ public interface ILoginService
 
     Task<bool> IsUserExistAsync(string email);
 
+    Task<bool> ResetPasswordAsync(string email, string password);
+
 
 }

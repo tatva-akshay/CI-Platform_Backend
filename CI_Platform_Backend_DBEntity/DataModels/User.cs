@@ -37,10 +37,6 @@ public partial class User
     [Column("phone_number")]
     public long PhoneNumber { get; set; }
 
-    [Column("avatar")]
-    [StringLength(2048)]
-    public string? Avatar { get; set; }
-
     [Column("skills")]
     [StringLength(255)]
     [Unicode(false)]
@@ -90,12 +86,19 @@ public partial class User
     [Column("deleted_at", TypeName = "datetime")]
     public DateTime? DeletedAt { get; set; }
 
+    [Column("avatar")]
+    [MaxLength(2048)]
+    public byte[]? Avatar { get; set; }
+
     [ForeignKey("CityId")]
     [InverseProperty("Users")]
     public virtual City? City { get; set; }
 
     [InverseProperty("User")]
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<ContactUss> ContactUsses { get; set; } = new List<ContactUss>();
 
     [ForeignKey("CountryId")]
     [InverseProperty("Users")]
@@ -109,4 +112,7 @@ public partial class User
 
     [InverseProperty("User")]
     public virtual ICollection<Story> Stories { get; set; } = new List<Story>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserInformation> UserInformations { get; set; } = new List<UserInformation>();
 }

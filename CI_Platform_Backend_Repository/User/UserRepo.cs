@@ -1,26 +1,21 @@
 using CI_Platform_Backend_DBEntity.Context;
 using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_Repository.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform_Backend_Repository.UserRepo;
 
-public class UserRepo : IUserRepo
+public class UserRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.User>, IUserRepo
 {
     private readonly ApplicationDbContext _dbContext;
-    public UserRepo(ApplicationDbContext dbContext)
+    public UserRepo(ApplicationDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<bool> AddAsync(User user)
+    public async Task<bool> IsExistAsync(long id)
     {
-        await _dbContext.Users.AddAsync(user);
-        return await _dbContext.SaveChangesAsync() == 1;
-    }
-
-    public async Task<User> GetByEmailAsync(string email)
-    {
-        return await _dbContext.Users.FirstOrDefaultAsync(x=>x.Email == email);
+        return await _dbContext.Users.AnyAsync(x=>x.UserId == id);
     }
 
 }

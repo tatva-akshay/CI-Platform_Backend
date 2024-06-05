@@ -9,3 +9,5 @@ d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Presentation\obj\
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Presentation\obj\Debug\net8.0\refint\CI_Platform_Backend_Presentation.dll
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Presentation\obj\Debug\net8.0\CI_Platform_Backend_Presentation.pdb
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Presentation\obj\Debug\net8.0\ref\CI_Platform_Backend_Presentation.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Presentation\obj\Debug\net8.0\CI_Platform_Backend_Presentation.sourcelink.json
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Presentation\obj\Debug\net8.0\CI_Platform_Backend_Presentation.csproj.AssemblyReference.cache
