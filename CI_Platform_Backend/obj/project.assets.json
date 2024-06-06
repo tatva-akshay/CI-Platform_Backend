@@ -1701,6 +1701,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "CI_Platform_Backend_DBEntity": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2"
         },
         "compile": {
@@ -1728,7 +1729,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "CI_Platform_Backend_Repository": "1.0.0"
+          "CI_Platform_Backend_Repository": "1.0.0",
+          "CI_Platform_Backend_Utilities": "1.0.0"
         },
         "compile": {
           "bin/placeholder/CI_Platform_Backend_Services.dll": {}
@@ -4607,8 +4609,8 @@
             "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj": {
               "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj"
             },
-            "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
-              "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
+            "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
+              "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
             }
           }
         }

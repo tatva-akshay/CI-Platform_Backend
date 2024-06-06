@@ -36,21 +36,22 @@ public class UserService : IUserService
         UserDTO userDTO = new UserDTO()
         {
             UserId = user.UserId,
-            FirstName = user.FirstName,
-            LastName = user.LastName,
+            FirstName = user.FirstName!,
+            LastName = user.LastName!,
             Email = user.Email,
-            EmployeeId = user.EmployeeId,
-            Department = user.Department,
-            CityId = user.CityId.Value,
-            CountryId = user.CountryId.Value,
-            Summary = user.ProfileText,
+            EmployeeId = user.EmployeeId!,
+            Department = user.Department!,
+            CityId = user.CityId!.Value,
+            CountryId = user.CountryId!.Value,
+            Summary = user.ProfileText!,
             Description = userInformation.Description,
             Availability = userInformation.Availability,
             Gender = userInformation.Gender,
             AgeGroup = userInformation.AgeGroup,
-            Title = user.Title,
-            WhyIVolunteer = user.WhyIVolunteer,
-            Skills = user.Skills
+            Title = user.Title!,
+            WhyIVolunteer = user.WhyIVolunteer!,
+            Skills = user.Skills!,
+            ProfileImage = user.Avatar!            
         };
         
         return userDTO;
@@ -77,6 +78,7 @@ public class UserService : IUserService
         if(user != null && user.UserId > 0)
         {
             user.Password = password;
+            user.UpdatedAt = DateTime.Now;
             return await _userRepo.UpdateAsync(user);
         }
         return false;
@@ -88,6 +90,63 @@ public class UserService : IUserService
         if(user != null && user.UserId > 0)
         {
             user.Skills = String.Join(", ", await _skillRepo.GetAsync(skillIds));
+            user.UpdatedAt = DateTime.Now;
+            return await _userRepo.UpdateAsync(user);
+        }
+        return false;
+    }
+
+    public async Task<bool> UpdateAsync(long id, UpdateUserDTO updateUserDTO)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        if(user != null && user.UserId > 0)
+        {
+            user.FirstName = updateUserDTO.FirstName;
+            user.LastName = updateUserDTO.LastName;
+            user.Email = updateUserDTO.Email;
+            user.WhyIVolunteer = updateUserDTO.WhyIVolunteer;
+            user.EmployeeId = updateUserDTO.EmployeeId;
+            user.Department = updateUserDTO.Department;
+            user.CityId = updateUserDTO.CityId;
+            user.CountryId = updateUserDTO.CountryId;
+            user.ProfileText = updateUserDTO.ProfileSummary;
+            user.Title = updateUserDTO.Title;
+            user.UpdatedAt = DateTime.Now;
+            await _userRepo.UpdateAsync(user);
+
+            UserInformation userInformation = await _userInformationRepo.GetAsync(x => x.UserId == id);
+            if(userInformation == null || userInformation.InformationId == 0)
+            {
+                await _userInformationRepo.AddAsync( new UserInformation()
+                    {
+                        UserId = id,
+                        Description = updateUserDTO.Description,
+                        Gender = updateUserDTO.Gender,
+                        Availability = updateUserDTO.Availability,
+                        AgeGroup = updateUserDTO.AgeGroup,
+                    }
+                );
+            }
+            else
+            {
+                userInformation.Description = updateUserDTO.Description;
+                userInformation.Gender = updateUserDTO.Gender;
+                userInformation.Availability = updateUserDTO.Availability;
+                userInformation.AgeGroup = updateUserDTO.AgeGroup;
+                await _userInformationRepo.UpdateAsync(userInformation);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public async Task<bool> UpdateImageAsync(long id, byte[] image)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        if(user != null && user.UserId > 0)
+        {
+            user.Avatar = image;
+            user.UpdatedAt = DateTime.Now;
             return await _userRepo.UpdateAsync(user);
         }
         return false;

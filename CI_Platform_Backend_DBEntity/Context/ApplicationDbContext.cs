@@ -34,9 +34,11 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<MissionApplication> MissionApplications { get; set; }
 
-    public virtual DbSet<MissionMedium> MissionMedia { get; set; }
+    public virtual DbSet<MissionFav> MissionFavs { get; set; }
 
-    public virtual DbSet<RecentVolunteer> RecentVolunteers { get; set; }
+    public virtual DbSet<MissionGoal> MissionGoals { get; set; }
+
+    public virtual DbSet<MissionMedium> MissionMedia { get; set; }
 
     public virtual DbSet<Skill> Skills { get; set; }
 
@@ -49,6 +51,8 @@ public partial class ApplicationDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserInformation> UserInformations { get; set; }
+
+    public virtual DbSet<Volunteer> Volunteers { get; set; }
 
     public virtual DbSet<VolunteeringTimesheet> VolunteeringTimesheets { get; set; }
 
@@ -84,6 +88,8 @@ public partial class ApplicationDbContext : DbContext
 
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
 
+            entity.HasOne(d => d.Mission).WithMany(p => p.Comments).HasConstraintName("FK__comments__missio__25518C17");
+
             entity.HasOne(d => d.User).WithMany(p => p.Comments)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__comments__user_i__03F0984C");
@@ -117,6 +123,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
             entity.Property(e => e.MissionRating).HasDefaultValue(0);
             entity.Property(e => e.MissionRatingCount).HasDefaultValue(0L);
+            entity.Property(e => e.Status).HasDefaultValue(1);
         });
 
         modelBuilder.Entity<MissionApplication>(entity =>
@@ -134,6 +141,28 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK__mission_a__user___0A9D95DB");
         });
 
+        modelBuilder.Entity<MissionFav>(entity =>
+        {
+            entity.HasKey(e => e.FavouriteId).HasName("PK__mission___B3E742CE4858062F");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.MissionFavs)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_f__missi__32AB8735");
+
+            entity.HasOne(d => d.User).WithMany(p => p.MissionFavs)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_f__user___339FAB6E");
+        });
+
+        modelBuilder.Entity<MissionGoal>(entity =>
+        {
+            entity.HasKey(e => e.GoalId).HasName("PK__mission___76679A24CFF9D43F");
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.MissionGoals)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__mission_g__missi__2FCF1A8A");
+        });
+
         modelBuilder.Entity<MissionMedium>(entity =>
         {
             entity.HasKey(e => e.MediaId).HasName("PK__mission___D0A840F4D4FA430F");
@@ -141,19 +170,6 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Mission).WithMany(p => p.MissionMedia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__mission_m__missi__07C12930");
-        });
-
-        modelBuilder.Entity<RecentVolunteer>(entity =>
-        {
-            entity.HasKey(e => e.VolunteerId).HasName("PK__recent_v__0FE766B1271098F9");
-
-            entity.HasOne(d => d.Mission).WithMany(p => p.RecentVolunteers)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__recent_vo__missi__0F624AF8");
-
-            entity.HasOne(d => d.User).WithMany(p => p.RecentVolunteers)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__recent_vo__user___10566F31");
         });
 
         modelBuilder.Entity<Skill>(entity =>
@@ -202,6 +218,22 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.User).WithMany(p => p.UserInformations)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__user_info__user___2180FB33");
+        });
+
+        modelBuilder.Entity<Volunteer>(entity =>
+        {
+            entity.HasKey(e => e.VolunteerId).HasName("PK__voluntee__0FE766B142853222");
+
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.Status).HasDefaultValue(1);
+
+            entity.HasOne(d => d.Mission).WithMany(p => p.Volunteers)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__volunteer__missi__282DF8C2");
+
+            entity.HasOne(d => d.User).WithMany(p => p.Volunteers)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__volunteer__user___29221CFB");
         });
 
         modelBuilder.Entity<VolunteeringTimesheet>(entity =>

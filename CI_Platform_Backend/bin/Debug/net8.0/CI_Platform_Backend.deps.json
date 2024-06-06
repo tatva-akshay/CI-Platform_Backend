@@ -959,6 +959,7 @@
       },
       "CI_Platform_Backend_Presentation/1.0.0": {
         "dependencies": {
+          "CI_Platform_Backend_DBEntity": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2"
         },
         "runtime": {
@@ -976,7 +977,8 @@
       },
       "CI_Platform_Backend_Services/1.0.0": {
         "dependencies": {
-          "CI_Platform_Backend_Repository": "1.0.0"
+          "CI_Platform_Backend_Repository": "1.0.0",
+          "CI_Platform_Backend_Utilities": "1.0.0"
         },
         "runtime": {
           "CI_Platform_Backend_Services.dll": {}

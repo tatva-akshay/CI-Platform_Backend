@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http;
+
 namespace CI_Platform_Backend_Presentation.DTO.User;
 
 public class UserDTO
@@ -34,5 +36,7 @@ public class UserDTO
 
 
     public string Skills { get; set; }
+
+    public byte[] ProfileImage { get; set; }
 
 }

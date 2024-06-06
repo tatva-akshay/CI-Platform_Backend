@@ -40,6 +40,13 @@ public partial class Comment
     [Column("deleted_at", TypeName = "datetime")]
     public DateTime? DeletedAt { get; set; }
 
+    [Column("mission_id")]
+    public long? MissionId { get; set; }
+
+    [ForeignKey("MissionId")]
+    [InverseProperty("Comments")]
+    public virtual Mission? Mission { get; set; }
+
     [ForeignKey("UserId")]
     [InverseProperty("Comments")]
     public virtual User User { get; set; } = null!;

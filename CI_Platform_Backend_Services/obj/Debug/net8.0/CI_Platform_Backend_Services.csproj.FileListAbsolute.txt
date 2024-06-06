@@ -18,3 +18,5 @@ D:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Services\obj\Debu
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Services\bin\Debug\net8.0\CI_Platform_Backend_Presentation.dll
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Services\bin\Debug\net8.0\CI_Platform_Backend_Presentation.pdb
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Services\obj\Debug\net8.0\CI_Platform_Backend_Services.sourcelink.json
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Services\bin\Debug\net8.0\CI_Platform_Backend_Utilities.dll
+d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Services\bin\Debug\net8.0\CI_Platform_Backend_Utilities.pdb

@@ -1113,6 +1113,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "CI_Platform_Backend_DBEntity": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2"
         },
         "compile": {
@@ -3030,8 +3031,8 @@
             "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
               "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
             },
-            "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
-              "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
+            "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
+              "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
             }
           }
         }

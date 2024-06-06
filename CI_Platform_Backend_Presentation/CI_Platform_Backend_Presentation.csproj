@@ -7,4 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CI_Platform_Backend_DBEntity\CI_Platform_Backend_DBEntity.csproj" />
+  </ItemGroup>
 </Project>

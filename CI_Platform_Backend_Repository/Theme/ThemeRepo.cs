@@ -12,5 +12,10 @@ public class ThemeRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.Them
     {
         _dbContext = dbContext;
     }   
-
+    
+    public async Task<string> GetNameAsync(long id)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.Theme theme = await _dbContext.Themes.FirstOrDefaultAsync(c => c.ThemeId == id);
+        return theme.Theme1;
+    }
 }

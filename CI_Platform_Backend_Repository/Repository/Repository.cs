@@ -27,14 +27,9 @@ public class Repository<T> : IRepository<T> where T : class
         return await _dbContext.SaveChangesAsync() == 1;
     }
 
-    // public async Task<List<string>> GetAsync(List<long> skillIDs)
-    // {
-    //     return await _dbContext.Skills.Where(c => skillIDs.Contains(c.SkillId) && c.Status).Select(x=>x.Skills).ToListAsync();
-    // }
-
     public async Task<T> GetAsync(Expression<Func<T, bool>> filter = null!)
     {
-        return await _dbSet.Where(filter).FirstOrDefaultAsync();
+        return await _dbSet.FirstOrDefaultAsync(filter);
     }
 
     public async Task<List<T>> GetAsync()

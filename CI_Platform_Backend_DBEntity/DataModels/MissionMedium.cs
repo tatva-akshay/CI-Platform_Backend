@@ -14,11 +14,9 @@ public partial class MissionMedium
     public long MediaId { get; set; }
 
     [Column("image")]
-    [MaxLength(2048)]
     public byte[]? Image { get; set; }
 
     [Column("document")]
-    [MaxLength(2048)]
     public byte[]? Document { get; set; }
 
     [Column("mission_id")]

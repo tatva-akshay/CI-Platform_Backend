@@ -87,7 +87,6 @@ public partial class User
     public DateTime? DeletedAt { get; set; }
 
     [Column("avatar")]
-    [MaxLength(2048)]
     public byte[]? Avatar { get; set; }
 
     [ForeignKey("CityId")]
@@ -108,11 +107,14 @@ public partial class User
     public virtual ICollection<MissionApplication> MissionApplications { get; set; } = new List<MissionApplication>();
 
     [InverseProperty("User")]
-    public virtual ICollection<RecentVolunteer> RecentVolunteers { get; set; } = new List<RecentVolunteer>();
+    public virtual ICollection<MissionFav> MissionFavs { get; set; } = new List<MissionFav>();
 
     [InverseProperty("User")]
     public virtual ICollection<Story> Stories { get; set; } = new List<Story>();
 
     [InverseProperty("User")]
     public virtual ICollection<UserInformation> UserInformations { get; set; } = new List<UserInformation>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<Volunteer> Volunteers { get; set; } = new List<Volunteer>();
 }

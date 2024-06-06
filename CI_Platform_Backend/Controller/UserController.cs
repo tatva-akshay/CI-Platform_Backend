@@ -1,8 +1,8 @@
-using System.Security.Authentication;
 using AutoMapper;
 using CI_Platform_Backend_Presentation.DTO.User;
 using CI_Platform_Backend_Services.User;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace CI_Platform_Backend.Controller;
 
@@ -34,6 +34,30 @@ public class UserController : ControllerBase
                 return NotFound();
             }
             return Ok(user);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        return BadRequest();
+    }
+
+
+    [HttpPost]
+    [Route("update")]
+    public async Task<ActionResult> UpdateAsync(long id, UpdateUserDTO updateUserDTO)
+    {
+        try
+        {
+            if(await _userService.IsExistAsync(id))
+            {
+                if(await _userService.UpdateAsync(id, updateUserDTO))
+                {
+                    return Ok();
+                }
+                return BadRequest();
+            }
+           return NotFound();
         }
         catch (Exception ex)
         {
@@ -97,28 +121,53 @@ public class UserController : ControllerBase
         return BadRequest();
     }
 
-    // [HttpPost]
-    // [Route("image")]
-    // public async Task<ActionResult> Image(IFormFile theImage)
-    // {
-        
-    //     byte[] arr;
-    //     using (var item = new MemoryStream())
-    //     {
-    //         theImage.CopyTo(item);
-    //         arr = item.ToArray(); //2nd change here
-    //     }
-    //     return Ok(arr);
-    // }
+    [HttpPost]
+    [Route("update-profile-image")]
+    public async Task<ActionResult> Image(long id, IFormFile image)
+    {
+        try
+        {
+            if(await _userService.IsExistAsync(id))
+            {
+                byte[] imageBytes;
+                using (var item = new MemoryStream())
+                {
+                    image.CopyTo(item);
+                    imageBytes = item.ToArray();
+                }
+                if(await _userService.UpdateImageAsync(id, imageBytes))
+                {
+                    return Ok(imageBytes);
+                }
+                return BadRequest();
+            }
+           return NotFound();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        return BadRequest();
+    }
 
-    // [HttpPost]
-    // [Route("Download")]
-    // public IActionResult Download(byte[] bytes)
-    // {
-    //     return File(bytes, "application/octet-stream", "abc.png");
-    //     //  MemoryStream ms = new MemoryStream(byteArrayIn,0,byteArrayIn.Length);
-    //     // ms.Write(byteArrayIn, 0, byteArrayIn.Length);
-    //     // var returnImage = Image.FromStream(ms,true);
-    //     // return File()
-    // }
+    [HttpPost]
+    [Route("Download")]
+    public async Task<ActionResult> Download(long id)
+    {
+        try
+        {
+            if(await _userService.IsExistAsync(id))
+            {
+                UserDTO user = await _userService.GetAsync(id);
+                return File(user.ProfileImage, "application/octet-stream", "abc.png");
+
+            }
+           return NotFound();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        return BadRequest();
+    }
 }

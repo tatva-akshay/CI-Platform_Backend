@@ -4,6 +4,7 @@ using CI_Platform_Backend_Repository.City;
 using CI_Platform_Backend_Repository.CMSPrivacyPolicyRepo;
 using CI_Platform_Backend_Repository.ContactUs;
 using CI_Platform_Backend_Repository.Country;
+using CI_Platform_Backend_Repository.Mission;
 using CI_Platform_Backend_Repository.Skill;
 using CI_Platform_Backend_Repository.Theme;
 using CI_Platform_Backend_Repository.User;
@@ -12,12 +13,14 @@ using CI_Platform_Backend_Services;
 using CI_Platform_Backend_Services.ContactUs;
 using CI_Platform_Backend_Services.JwtService;
 using CI_Platform_Backend_Services.Login;
+using CI_Platform_Backend_Services.Mission;
 using CI_Platform_Backend_Services.Register;
 using CI_Platform_Backend_Services.Skill;
 using CI_Platform_Backend_Services.Theme;
 using CI_Platform_Backend_Services.User;
 using CI_Platform_Backend_Utilities.AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -28,6 +31,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => {
+    options.MapType<DateOnly>(() => new OpenApiSchema { 
+        Type = "string",
+        Format = "date" });
     options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Description = "JWT Authorization using Bearer scheme \n\n Add Like 'Bearer tokenValue'",
@@ -61,6 +67,7 @@ builder.Services.AddAuthentication(x=>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    
 }
 ).AddJwtBearer(x=>{
     x.RequireHttpsMetadata = false;
@@ -84,11 +91,13 @@ builder.Services.AddScoped<ISkillService, SkillService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserInformationRepo, UserInformationRepo>();
 builder.Services.AddScoped<IContactUsService, ContactUsService>();
+builder.Services.AddScoped<IMissionService, MissionService>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ICountryRepo, CountryRepo>();
 builder.Services.AddScoped<ICityRepo, CityRepo>();
 builder.Services.AddScoped<IThemeRepo, ThemeRepo>();
 builder.Services.AddScoped<ISkillRepo, SkillRepo>();
+builder.Services.AddScoped<IMissionRepo, MissionRepo>();
 builder.Services.AddScoped<IContactUsRepo, ContactUsRepo>();
 builder.Services.AddScoped<ICMSPrivacyPolicyRepo, CMSPrivacyPolicyRepo>();
 var app = builder.Build();

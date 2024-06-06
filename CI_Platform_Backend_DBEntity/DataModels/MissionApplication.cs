@@ -28,6 +28,9 @@ public partial class MissionApplication
     [Column("deleted_at", TypeName = "datetime")]
     public DateTime? DeletedAt { get; set; }
 
+    [Column("is_approved")]
+    public bool? IsApproved { get; set; }
+
     [ForeignKey("MissionId")]
     [InverseProperty("MissionApplications")]
     public virtual Mission Mission { get; set; } = null!;

@@ -99,18 +99,30 @@ public partial class Mission
     [Column("deleted_at", TypeName = "datetime")]
     public DateTime? DeletedAt { get; set; }
 
+    [Column("status")]
+    public int Status { get; set; }
+
+    [InverseProperty("Mission")]
+    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
     [InverseProperty("Mission")]
     public virtual ICollection<MissionApplication> MissionApplications { get; set; } = new List<MissionApplication>();
 
     [InverseProperty("Mission")]
-    public virtual ICollection<MissionMedium> MissionMedia { get; set; } = new List<MissionMedium>();
+    public virtual ICollection<MissionFav> MissionFavs { get; set; } = new List<MissionFav>();
 
     [InverseProperty("Mission")]
-    public virtual ICollection<RecentVolunteer> RecentVolunteers { get; set; } = new List<RecentVolunteer>();
+    public virtual ICollection<MissionGoal> MissionGoals { get; set; } = new List<MissionGoal>();
+
+    [InverseProperty("Mission")]
+    public virtual ICollection<MissionMedium> MissionMedia { get; set; } = new List<MissionMedium>();
 
     [InverseProperty("Mission")]
     public virtual ICollection<StoryMedium> StoryMedia { get; set; } = new List<StoryMedium>();
 
     [InverseProperty("Mission")]
     public virtual ICollection<VolunteeringTimesheet> VolunteeringTimesheets { get; set; } = new List<VolunteeringTimesheet>();
+
+    [InverseProperty("Mission")]
+    public virtual ICollection<Volunteer> Volunteers { get; set; } = new List<Volunteer>();
 }

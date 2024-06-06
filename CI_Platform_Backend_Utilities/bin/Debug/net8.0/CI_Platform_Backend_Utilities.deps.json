@@ -653,6 +653,7 @@
       },
       "CI_Platform_Backend_Presentation/1.0.0": {
         "dependencies": {
+          "CI_Platform_Backend_DBEntity": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2"
         },
         "runtime": {

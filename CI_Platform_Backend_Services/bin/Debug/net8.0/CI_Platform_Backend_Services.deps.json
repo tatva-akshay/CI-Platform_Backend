@@ -8,10 +8,22 @@
     ".NETCoreApp,Version=v8.0": {
       "CI_Platform_Backend_Services/1.0.0": {
         "dependencies": {
-          "CI_Platform_Backend_Repository": "1.0.0"
+          "CI_Platform_Backend_Repository": "1.0.0",
+          "CI_Platform_Backend_Utilities": "1.0.0"
         },
         "runtime": {
           "CI_Platform_Backend_Services.dll": {}
+        }
+      },
+      "AutoMapper/13.0.1": {
+        "dependencies": {
+          "Microsoft.Extensions.Options": "8.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.0"
+          }
         }
       },
       "Azure.Core/1.35.0": {
@@ -640,6 +652,7 @@
       },
       "CI_Platform_Backend_Presentation/1.0.0": {
         "dependencies": {
+          "CI_Platform_Backend_DBEntity": "1.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2"
         },
         "runtime": {
@@ -654,6 +667,16 @@
         "runtime": {
           "CI_Platform_Backend_Repository.dll": {}
         }
+      },
+      "CI_Platform_Backend_Utilities/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "13.0.1",
+          "CI_Platform_Backend_DBEntity": "1.0.0",
+          "CI_Platform_Backend_Presentation": "1.0.0"
+        },
+        "runtime": {
+          "CI_Platform_Backend_Utilities.dll": {}
+        }
       }
     }
   },
@@ -662,6 +685,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
+      "path": "automapper/13.0.1",
+      "hashPath": "automapper.13.0.1.nupkg.sha512"
     },
     "Azure.Core/1.35.0": {
       "type": "package",
@@ -1108,6 +1138,11 @@
       "sha512": ""
     },
     "CI_Platform_Backend_Repository/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CI_Platform_Backend_Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

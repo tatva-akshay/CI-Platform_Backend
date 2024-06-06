@@ -14,4 +14,8 @@ public interface IUserService
 
     Task<bool> ChangeSkillsAsync(long id, List<long> skillIds);
 
+    Task<bool> UpdateAsync(long id, UpdateUserDTO updateUserDTO);
+    
+    Task<bool> UpdateImageAsync(long id, byte[] image);
+
 }
