@@ -5,6 +5,7 @@ using CI_Platform_Backend_Presentation.DTO.Volunteer;
 using CI_Platform_Backend_Repository.City;
 using CI_Platform_Backend_Repository.Country;
 using CI_Platform_Backend_Repository.Mission;
+using CI_Platform_Backend_Repository.MissionApplication;
 using CI_Platform_Backend_Repository.Skill;
 using CI_Platform_Backend_Repository.Theme;
 using CI_Platform_Backend_Utilities.ENUMS;
@@ -17,15 +18,17 @@ public class MissionService : IMissionService
     private readonly ICountryRepo _countryRepo;
     private readonly ICityRepo _cityRepo;
     private readonly IThemeRepo _themeRepo;
+    private readonly IMissionApplicationRepo _missionApplicationRepo;
 
     private readonly ISkillRepo _skillRepo;
-    public MissionService(IMissionRepo missionRepo, ICountryRepo countryRepo, ICityRepo cityRepo, IThemeRepo themeRepo, ISkillRepo skillRepo)
+    public MissionService(IMissionRepo missionRepo, ICountryRepo countryRepo, ICityRepo cityRepo, IThemeRepo themeRepo, ISkillRepo skillRepo, IMissionApplicationRepo missionApplicationRepo)
     {
         _missionRepo = missionRepo;
         _countryRepo = countryRepo;
         _cityRepo = cityRepo;
         _themeRepo = themeRepo;
         _skillRepo = skillRepo;
+        _missionApplicationRepo = missionApplicationRepo;
     }
 
     public async Task<bool> IsExistAsync(string title)
@@ -73,13 +76,6 @@ public class MissionService : IMissionService
             MissionSkills = skillNames,
             MissionAvailability = availability,
             Status = 1,
-            MissionApplications = [
-                new MissionApplication()
-                {
-                    UserId = userId  ,
-                    CreatedAt = DateTime.Now,
-                }
-            ],
             MissionGoals = createMissionDTO.MissionType == 2 ? [
                 new MissionGoal()
                 {
@@ -210,4 +206,36 @@ public class MissionService : IMissionService
     {
         return await _missionRepo.GetRelatedMissionsAsync(missionId, userId);
     }
+
+    public async Task<bool> ApplyAsync(long userId, long missionId)
+    {
+        return await _missionApplicationRepo.AddAsync(new MissionApplication()
+        {
+            UserId = userId,
+            MissionId = missionId,
+        });
+    }
+
+    public async Task<bool> ApproveAsync(long userId, long missionId)
+    {
+        MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId);
+        if(missionApplication == null || missionApplication.MissionId == 0)
+        {
+            return false;
+        }
+        missionApplication.IsApproved = true;
+        return await _missionApplicationRepo.UpdateAsync(missionApplication);
+    }
+
+    public async Task<bool> DeclineAsync(long userId, long missionId)
+    {
+        MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId);
+        if(missionApplication == null || missionApplication.MissionId == 0)
+        {
+            return false;
+        }
+        missionApplication.IsApproved = false;
+        return await _missionApplicationRepo.UpdateAsync(missionApplication);
+    }
+
 }

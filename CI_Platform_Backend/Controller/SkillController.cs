@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("skills")]
 public class SkillController : ControllerBase
 {
     private readonly ISkillService _skillService;
@@ -23,7 +23,7 @@ public class SkillController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Create new Skill option
     [HttpPost]
-    [Route("create")]
+    [Route("")]
     public async Task<ActionResult> CreateAsync(CreateSkillDTO skillDTO)
     {
         return await _skillService.AddAsync(_mapper.Map<Skill>(skillDTO)) ?
@@ -33,8 +33,8 @@ public class SkillController : ControllerBase
 
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Update Skill option
-    [HttpPost]
-    [Route("update")]
+    [HttpPut]
+    [Route("")]
     public async Task<ActionResult> UpdateAsync(long id, CreateSkillDTO skillDTO)
     {
         return await _skillService.UpdateAsync(id, skillDTO) ?
@@ -45,7 +45,7 @@ public class SkillController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Delete Skill option
     [HttpDelete]
-    [Route("delete")]
+    [Route("")]
     public async Task<ActionResult> DeleteAsync(long id)
     {
         return await _skillService.DeleteAsync(id) ?

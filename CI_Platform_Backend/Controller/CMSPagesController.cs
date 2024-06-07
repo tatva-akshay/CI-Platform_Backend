@@ -1,3 +1,4 @@
+using System.Net;
 using AutoMapper;
 using CI_Platform_Backend_DBEntity.DataModels;
 using CI_Platform_Backend_Presentation.DTO.CMSPages;
@@ -7,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("cms-pages")]
 public class CMSPagesController : ControllerBase
 {
     private readonly ICMSPageService _cMSPageService;
@@ -22,7 +23,7 @@ public class CMSPagesController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Create CMS Page
     [HttpPost]
-    [Route("create")]
+    [Route("")]
     public async Task<ActionResult> CreateAsync(CreateCMSPageDTO cMSPageDTO)
     {
         return await _cMSPageService.AddAsync(_mapper.Map<CmsPrivacyPolicy>(cMSPageDTO)) ?
@@ -32,8 +33,8 @@ public class CMSPagesController : ControllerBase
 
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Update CMS Page
-    [HttpPost]
-    [Route("update")]
+    [HttpPut]
+    [Route("")]
     public async Task<ActionResult> UpdateAsync(long id, CreateCMSPageDTO cMSPageDTO)
     {
         return await _cMSPageService.UpdateAsync(id, cMSPageDTO) ? 
@@ -44,7 +45,7 @@ public class CMSPagesController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Delete CMS Page
     [HttpDelete]
-    [Route("delete")]
+    [Route("")]
     public async Task<ActionResult> DeleteAsync(long id)
     {
         return await _cMSPageService.DeleteAsync(id) ?
@@ -55,6 +56,7 @@ public class CMSPagesController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Get All CMS Pages List
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK ,Type = typeof(CMSPageDTO))]
     [Route("")]
     public async Task<ActionResult> GetAllAsync()
     {

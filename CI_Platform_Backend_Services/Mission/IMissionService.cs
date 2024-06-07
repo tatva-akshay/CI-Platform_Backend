@@ -15,4 +15,10 @@ public interface IMissionService
     Task<MissionDetailsDTO> GetAsync(long userId, long missionId);
 
     Task<List<RelatedMissionDTO>> RelatedMissionsAsync(long userId, long missionId);
+
+    Task<bool> ApplyAsync(long userId, long missionId);
+
+    Task<bool> ApproveAsync(long userId, long missionId);
+
+    Task<bool> DeclineAsync(long userId, long missionId);
 }

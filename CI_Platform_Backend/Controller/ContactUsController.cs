@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("contact-us")]
 public class ContactUsController : ControllerBase
 {
     private readonly IUserService _userService;

@@ -6,6 +6,7 @@ using CI_Platform_Backend_Repository.Comment;
 using CI_Platform_Backend_Repository.ContactUs;
 using CI_Platform_Backend_Repository.Country;
 using CI_Platform_Backend_Repository.Mission;
+using CI_Platform_Backend_Repository.MissionApplication;
 using CI_Platform_Backend_Repository.Skill;
 using CI_Platform_Backend_Repository.Story;
 using CI_Platform_Backend_Repository.StoryView;
@@ -108,6 +109,7 @@ builder.Services.AddScoped<IContactUsRepo, ContactUsRepo>();
 builder.Services.AddScoped<ICommentRepo, CommentRepo>();
 builder.Services.AddScoped<IStoryRepo, StoryRepo>();
 builder.Services.AddScoped<IStoryViewRepo, StoryViewRepo>();
+builder.Services.AddScoped<IMissionApplicationRepo, MissionApplicationRepo>();
 builder.Services.AddScoped<ICMSPrivacyPolicyRepo, CMSPrivacyPolicyRepo>();
 var app = builder.Build();
 

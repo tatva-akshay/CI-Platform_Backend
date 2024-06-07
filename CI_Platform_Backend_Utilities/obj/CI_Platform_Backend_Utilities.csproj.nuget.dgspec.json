@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {}
+    "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {}
   },
   "projects": {
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+    "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
+        "projectUniqueName": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
         "projectName": "CI_Platform_Backend_DBEntity",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
+        "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\obj\\",
+        "outputPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,11 +34,22 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -50,7 +61,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
@@ -78,8 +94,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
+              "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+                "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
               }
             }
           }
@@ -88,11 +104,22 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -104,18 +131,23 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
+    "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
+        "projectUniqueName": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
         "projectName": "CI_Platform_Backend_Utilities",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
+        "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\obj\\",
+        "outputPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -132,8 +164,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
+              "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+                "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
               },
               "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
                 "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
@@ -145,11 +177,22 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -161,7 +204,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

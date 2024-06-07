@@ -1,12 +1,13 @@
 using CI_Platform_Backend_Presentation.DTO.Mission;
 using CI_Platform_Backend_Services.Mission;
 using CI_Platform_Backend_Services.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("missions")]
 public class MissionController : ControllerBase
 {
     private readonly IMissionService _missionService;
@@ -19,7 +20,7 @@ public class MissionController : ControllerBase
     }
 
     [HttpPost]
-    [Route("create")]
+    [Route("")]
     public async Task<IActionResult> CreateAsync(long userId, CreateMissionDTO createMissionDTO)
     {
         return !await _missionService.IsExistAsync(createMissionDTO.Title) && await _missionService.AddAsync(userId, createMissionDTO) ? 
@@ -28,7 +29,7 @@ public class MissionController : ControllerBase
     }
 
     [HttpGet]
-    [Route("get-all")]
+    [Route("")]
     public async Task<IActionResult> GetAllAsync(long userId)
     {
         return await _userService.IsExistAsync(userId) ?
@@ -37,7 +38,7 @@ public class MissionController : ControllerBase
     }
 
     [HttpGet]
-    [Route("get")]
+    [Route("{missionId}")]
     public async Task<IActionResult> GetAsync(long userId, long missionId)
     {
         if(await _userService.IsExistAsync(userId))
@@ -50,7 +51,7 @@ public class MissionController : ControllerBase
     }
 
     [HttpGet]
-    [Route("get-related-mission")]
+    [Route("related-missions")]
     public async Task<IActionResult> GetRelatedMissionsAsync(long userId, long missionId)
     {
         if(await _userService.IsExistAsync(userId))
@@ -60,5 +61,38 @@ public class MissionController : ControllerBase
                 NotFound();
         }
         return Unauthorized();
+    }
+
+    [HttpPost]
+    [Route("apply")]
+    public async Task<ActionResult> ApplyAsync(long missionId, long userId)
+    {
+        if(await _userService.IsExistAsync(userId))
+        {
+            return await _missionService.IsExistAsync(missionId) ?
+                Ok(await _missionService.ApplyAsync(userId, missionId)) :
+                NotFound();
+        }
+        return Unauthorized();
+    }
+
+    [HttpPost]
+    [Route("approve")]
+    // [Authorize(Roles = "Admin")]
+    public async Task<ActionResult> ApproveAsync(long missionId, long userId)
+    {
+        return await _missionService.IsExistAsync(missionId) ?
+            Ok(await _missionService.ApproveAsync(userId, missionId)) :
+            NotFound();
+    }
+
+    [HttpPost]
+    [Route("decline")]
+    // [Authorize(Roles = "Admin")]
+    public async Task<ActionResult> DeclineAsync(long missionId, long userId)
+    {
+        return await _missionService.IsExistAsync(missionId) ?
+            Ok(await _missionService.DeclineAsync(userId, missionId)) :
+            NotFound();
     }
 }

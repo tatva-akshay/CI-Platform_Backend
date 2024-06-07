@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("auth")]
 public class AuthController : ControllerBase
 {
     private readonly IMapper _mapper;
@@ -91,7 +91,6 @@ public class AuthController : ControllerBase
     [Route("/something-went-wrong")]
     public ActionResult Exception()
     {
-        var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerFeature>();
-        return BadRequest(exceptionDetails);
+        return BadRequest(HttpContext.Features.Get<IExceptionHandlerFeature>());
     }
 }

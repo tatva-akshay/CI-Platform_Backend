@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("mission-comments")]
 public class CommentController : ControllerBase
 {
     private readonly ICommentService _commentService;
@@ -19,7 +19,7 @@ public class CommentController : ControllerBase
     }
 
     [HttpGet]
-    [Route("get-by-mission")]
+    [Route("{missionId}")]
     public async Task<ActionResult> GetByMissionAsync(long missionId)
     {
         return await _missionService.IsExistAsync(missionId) ? 
@@ -28,7 +28,7 @@ public class CommentController : ControllerBase
     }
 
     [HttpPost]
-    [Route("add-comment")]
+    [Route("add")]
     public async Task<ActionResult> AddAsync(CreateCommentDTO createCommentDTO)
     {
         return await _missionService.IsExistAsync(createCommentDTO.MissionId) ?

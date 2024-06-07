@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("themes")]
 public class ThemeController : ControllerBase
 {
     private readonly IThemeService _themeService;
@@ -23,7 +23,7 @@ public class ThemeController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Create new Theme option
     [HttpPost]
-    [Route("create")]
+    [Route("")]
     public async Task<ActionResult> CreateAsync(CreateThemeDTO themeDTO)
     {
         return await _themeService.AddAsync(_mapper.Map<Theme>(themeDTO)) ?
@@ -33,8 +33,8 @@ public class ThemeController : ControllerBase
 
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Update Theme option
-    [HttpPost]
-    [Route("update")]
+    [HttpPut]
+    [Route("")]
     public async Task<ActionResult> UpdateAsync(long id, CreateThemeDTO themeDTO)
     {
         return await _themeService.UpdateAsync(id, themeDTO) ?
@@ -45,7 +45,7 @@ public class ThemeController : ControllerBase
     // Created: 5 June - Dhruvil Bhojani
     // This Action will be used to Delete Theme option
     [HttpDelete]
-    [Route("delete")]
+    [Route("")]
     public async Task<ActionResult> DeleteAsync(long id)
     {
         return await _themeService.DeleteAsync(id) ?

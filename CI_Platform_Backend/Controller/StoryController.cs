@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("stories")]
 public class StoryController : ControllerBase
 {
     private readonly IStoryService _storyService;
@@ -16,12 +16,16 @@ public class StoryController : ControllerBase
     }
 
     [HttpPost]
-    [Route("add-update")]
+    [Route("")]
     public async Task<ActionResult> AddOrUpdateAsync(CreateStoryDTO createStoryDTO)
     {
-        return await _storyService.AddOrUpdateAsync(createStoryDTO) ?
-            Ok() :
-            BadRequest();
+        if(await _storyService.IsValidAsync(createStoryDTO.MissionId, createStoryDTO.UserId))
+        {
+            return await _storyService.AddOrUpdateAsync(createStoryDTO) ?
+                Ok() :
+                BadRequest();
+        }
+        return Unauthorized();
     }
 
     [HttpGet]
@@ -32,7 +36,7 @@ public class StoryController : ControllerBase
     }
 
     [HttpGet]
-    [Route("story")]
+    [Route("{storyId}")]
     public async Task<ActionResult> GetAsync(long storyId, long userId)
     {
         StoryDetailsDTO story = await _storyService.GetAsync(storyId, userId);

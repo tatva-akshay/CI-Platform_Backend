@@ -1,6 +1,7 @@
 using CI_Platform_Backend_DBEntity.DataModels;
 using CI_Platform_Backend_Presentation.DTO.Story;
 using CI_Platform_Backend_Repository.Mission;
+using CI_Platform_Backend_Repository.MissionApplication;
 using CI_Platform_Backend_Repository.Story;
 using CI_Platform_Backend_Repository.StoryView;
 using CI_Platform_Backend_Repository.UserRepo;
@@ -10,19 +11,18 @@ namespace CI_Platform_Backend_Services.Story;
 public class StoryService : IStoryService
 {
     private readonly IStoryRepo _storyRepo;
-
     private readonly IMissionRepo _missionRepo;
-
     private readonly IUserRepo _userRepo;
-
     private readonly IStoryViewRepo _storyViewRepo;
+    private readonly IMissionApplicationRepo _missionApplicationRepo;
 
-    public StoryService(IStoryRepo storyRepo, IMissionRepo missionRepo, IUserRepo userRepo, IStoryViewRepo storyViewRepo)
+    public StoryService(IStoryRepo storyRepo, IMissionRepo missionRepo, IUserRepo userRepo, IStoryViewRepo storyViewRepo, IMissionApplicationRepo missionApplicationRepo)
     {
         _storyRepo = storyRepo;
         _missionRepo = missionRepo;
         _userRepo = userRepo;
         _storyViewRepo = storyViewRepo;
+        _missionApplicationRepo = missionApplicationRepo;
     }
 
     public async Task<bool> AddOrUpdateAsync(CreateStoryDTO createStoryDTO)
@@ -87,6 +87,12 @@ public class StoryService : IStoryService
             });
         }
         return await _storyRepo.UpdateAsync(story);
+    }
+
+    public async Task<bool> IsValidAsync(long missionId, long userId)
+    {
+        MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId);
+        return !(missionApplication == null || missionApplication.ApplicationId == 0 || missionApplication.IsApproved != true);
     }
 
     public async Task<List<StoryDTO>> GetAllAsync(long missionId)

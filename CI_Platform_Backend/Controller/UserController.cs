@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CI_Platform_Backend.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("users")]
 public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
@@ -23,7 +23,7 @@ public class UserController : ControllerBase
     // This Action will be used to Get User Data using User ID
     // This Data will be as per Edit user page's required Data
     [HttpGet]
-    [Route("")]
+    [Route("{id}")]
     public async Task<ActionResult> GetAsync(long id)
     {
         UserDTO user = await _userService.GetAsync(id);
@@ -33,8 +33,8 @@ public class UserController : ControllerBase
     }
 
 
-    [HttpPost]
-    [Route("update")]
+    [HttpPut]
+    [Route("")]
     public async Task<ActionResult> UpdateAsync(long id, UpdateUserDTO updateUserDTO)
     {
         if(await _userService.IsExistAsync(id))
@@ -83,7 +83,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    [Route("update-profile-image")]
+    [Route("profile-image")]
     public async Task<ActionResult> Image(long id, IFormFile image)
     {
         if(await _userService.IsExistAsync(id))
@@ -101,8 +101,8 @@ public class UserController : ControllerBase
         return NotFound();
     }
 
-    [HttpPost]
-    [Route("Download")]
+    [HttpGet]
+    [Route("profile-image")]
     public async Task<ActionResult> Download(long id)
     {
         if(await _userService.IsExistAsync(id))
