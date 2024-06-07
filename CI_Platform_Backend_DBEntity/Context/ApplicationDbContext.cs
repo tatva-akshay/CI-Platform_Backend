@@ -46,6 +46,8 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<StoryMedium> StoryMedia { get; set; }
 
+    public virtual DbSet<StoryView> StoryViews { get; set; }
+
     public virtual DbSet<Theme> Themes { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -181,6 +183,8 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.StoryId).HasName("PK__story__66339C5655DCEB6C");
 
+            entity.Property(e => e.CreatedAt).HasDefaultValueSql("(getdate())");
+
             entity.HasOne(d => d.User).WithMany(p => p.Stories)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__story__user_id__1332DBDC");
@@ -193,6 +197,19 @@ public partial class ApplicationDbContext : DbContext
             entity.HasOne(d => d.Mission).WithMany(p => p.StoryMedia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__story_med__missi__18EBB532");
+
+            entity.HasOne(d => d.Story).WithMany(p => p.StoryMedia)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__story_med__story__3493CFA7");
+        });
+
+        modelBuilder.Entity<StoryView>(entity =>
+        {
+            entity.HasKey(e => e.ViewId).HasName("PK__story_vi__B5A34EE29FA52C44");
+
+            entity.HasOne(d => d.Story).WithMany(p => p.StoryViews)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK__story_vie__story__3864608B");
         });
 
         modelBuilder.Entity<Theme>(entity =>

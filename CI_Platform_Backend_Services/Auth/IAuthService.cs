@@ -1,8 +1,8 @@
 using CI_Platform_Backend_Presentation.DTO.Login;
 
-namespace CI_Platform_Backend_Services.Login;
+namespace CI_Platform_Backend_Services.Auth;
 
-public interface ILoginService
+public interface IAuthService
 {
     Task<bool> IsValidUserAsync(LoginDTO loginDTO);
 
@@ -10,5 +10,6 @@ public interface ILoginService
 
     Task<bool> ResetPasswordAsync(string email, string password);
 
+    Task<bool> RegisterUserAsync(CI_Platform_Backend_DBEntity.DataModels.User user);
 
 }

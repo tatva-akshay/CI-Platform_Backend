@@ -14,17 +14,22 @@ public partial class StoryMedium
     public long MediaId { get; set; }
 
     [Column("image")]
-    [MaxLength(2048)]
     public byte[]? Image { get; set; }
 
     [Column("document")]
-    [MaxLength(2048)]
     public byte[]? Document { get; set; }
 
     [Column("mission_id")]
     public long MissionId { get; set; }
 
+    [Column("story_id")]
+    public long StoryId { get; set; }
+
     [ForeignKey("MissionId")]
     [InverseProperty("StoryMedia")]
     public virtual Mission Mission { get; set; } = null!;
+
+    [ForeignKey("StoryId")]
+    [InverseProperty("StoryMedia")]
+    public virtual Story Story { get; set; } = null!;
 }

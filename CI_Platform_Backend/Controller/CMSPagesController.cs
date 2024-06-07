@@ -11,7 +11,6 @@ namespace CI_Platform_Backend.Controller;
 public class CMSPagesController : ControllerBase
 {
     private readonly ICMSPageService _cMSPageService;
-
     private readonly IMapper _mapper;
 
     public CMSPagesController(ICMSPageService cMSPageService, IMapper mapper)
@@ -26,11 +25,9 @@ public class CMSPagesController : ControllerBase
     [Route("create")]
     public async Task<ActionResult> CreateAsync(CreateCMSPageDTO cMSPageDTO)
     {
-        if(await _cMSPageService.AddAsync(_mapper.Map<CmsPrivacyPolicy>(cMSPageDTO)))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _cMSPageService.AddAsync(_mapper.Map<CmsPrivacyPolicy>(cMSPageDTO)) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -39,11 +36,9 @@ public class CMSPagesController : ControllerBase
     [Route("update")]
     public async Task<ActionResult> UpdateAsync(long id, CreateCMSPageDTO cMSPageDTO)
     {
-        if(await _cMSPageService.UpdateAsync(id, cMSPageDTO))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _cMSPageService.UpdateAsync(id, cMSPageDTO) ? 
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -52,11 +47,9 @@ public class CMSPagesController : ControllerBase
     [Route("delete")]
     public async Task<ActionResult> DeleteAsync(long id)
     {
-        if(await _cMSPageService.DeleteAsync(id))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _cMSPageService.DeleteAsync(id) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -65,15 +58,7 @@ public class CMSPagesController : ControllerBase
     [Route("")]
     public async Task<ActionResult> GetAllAsync()
     {
-        try
-        {
-            return Ok(_mapper.Map<List<CMSPageDTO>>(await _cMSPageService.GetCMSPagesAsync()));
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return Ok(_mapper.Map<List<CMSPageDTO>>(await _cMSPageService.GetCMSPagesAsync()));
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -82,17 +67,10 @@ public class CMSPagesController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> GetAsync(long id)
     {
-        try
-        {
-            CMSPageDTO cMSPageDTO = _mapper.Map<CMSPageDTO>(await _cMSPageService.GetCMSPageAsync(id));
-            return cMSPageDTO == null || cMSPageDTO.CMSPageID == 0 ?
-                NotFound() :
-                Ok(cMSPageDTO);
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        CMSPageDTO cMSPageDTO = _mapper.Map<CMSPageDTO>(await _cMSPageService.GetCMSPageAsync(id));
+
+        return cMSPageDTO == null || cMSPageDTO.CMSPageID == 0 ?
+            NotFound() :
+            Ok(cMSPageDTO);
     }
 }

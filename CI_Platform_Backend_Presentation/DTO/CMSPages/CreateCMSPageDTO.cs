@@ -20,7 +20,5 @@ public class CreateCMSPageDTO
     public string Slug { get; set; }
 
     [Required]
-    [MinLength(3)]
-    [MaxLength(1000)]
     public bool IsActive { get; set; }
 }

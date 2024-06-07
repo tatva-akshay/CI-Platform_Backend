@@ -31,21 +31,15 @@ public class MissionService : IMissionService
     public async Task<bool> IsExistAsync(string title)
     {
         CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionTitle == title);
-        if (mission == null || mission.MissionId == 0)
-        {
-            return false;
-        }
-        return true;
+        
+        return !(mission == null || mission.MissionId == 0);
     }
 
     public async Task<bool> IsExistAsync(long id)
     {
         CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == id);
-        if (mission == null || mission.MissionId == 0)
-        {
-            return false;
-        }
-        return true;
+        
+        return !(mission == null || mission.MissionId == 0);
     }
 
     public async Task<bool> AddAsync(long userId, CreateMissionDTO createMissionDTO)
@@ -60,6 +54,7 @@ public class MissionService : IMissionService
         {
             return false;
         }
+        
         CI_Platform_Backend_DBEntity.DataModels.Mission mission = new CI_Platform_Backend_DBEntity.DataModels.Mission()
         {
             MissionTitle = createMissionDTO.Title,
@@ -174,9 +169,7 @@ public class MissionService : IMissionService
     public async Task<MissionDetailsDTO> GetAsync(long userId, long missionId)
     {
         CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetWithAllDataAsync(userId, missionId);
-        Country country= await _countryRepo.GetAsync(x=>x.Country1 == mission.Country);
-        City city= await _cityRepo.GetAsync(x=>x.City1 == mission.City);
-        CI_Platform_Backend_DBEntity.DataModels.Theme theme = await _themeRepo.GetAsync(x=>x.Theme1 == mission.MissionTheme);
+        
         return new MissionDetailsDTO()
         {
             MissionId = mission.MissionId,
@@ -197,15 +190,6 @@ public class MissionService : IMissionService
             Description = mission.MissionDescription,
             OrganisationDetails = mission.MissionOrganisationDetail,
             Documents = mission.MissionMedia != null ? mission.MissionMedia.Where(x=>x.Document != null).Select(x=>x.Document).ToArray() : null,
-            Comments = mission.Comments != null ? mission.Comments.Select(x=>new CI_Platform_Backend_Presentation.DTO.Comment.CommentDTO()
-                {
-                    CommentId = x.CommentId,
-                    UserId = x.UserId,
-                    Comment = x.Comment1,
-                    UserName = x.UserName,
-                    CreatedAt = x.CreatedAt,
-
-                }).ToList() : null,
             Skills = mission.MissionSkills?.Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList(),
             Availability = mission.MissionAvailability,
             RatingCount = mission.MissionRatingCount!= null? mission.MissionRatingCount.Value : 0,
@@ -217,11 +201,13 @@ public class MissionService : IMissionService
                     CreatedAt = x.CreatedAt,
                 }).ToList() : null,
             VolunteerCount = mission.Volunteers != null ? mission.Volunteers.Count : 0,
-            RelatedMissions = await _missionRepo.GetRelatedMissionsAsync(country.CountryId, city.CityId, theme.ThemeId),
             IsFavourite = mission.MissionFavs.Count != 0,
             Goal = mission.MissionGoals !=null ? mission.MissionGoals.FirstOrDefault()?.Goal : null,
         };
     }
 
-
+    public async Task<List<RelatedMissionDTO>> RelatedMissionsAsync(long userId, long missionId)
+    {
+        return await _missionRepo.GetRelatedMissionsAsync(missionId, userId);
+    }
 }

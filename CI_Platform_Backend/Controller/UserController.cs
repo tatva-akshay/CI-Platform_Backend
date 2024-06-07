@@ -26,20 +26,10 @@ public class UserController : ControllerBase
     [Route("")]
     public async Task<ActionResult> GetAsync(long id)
     {
-        try
-        {
-            UserDTO user = await _userService.GetAsync(id);
-            if(user == null || user.UserId == 0)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        UserDTO user = await _userService.GetAsync(id);
+        return (user == null || user.UserId == 0) ? 
+            NotFound() :
+            Ok(user);
     }
 
 
@@ -47,23 +37,13 @@ public class UserController : ControllerBase
     [Route("update")]
     public async Task<ActionResult> UpdateAsync(long id, UpdateUserDTO updateUserDTO)
     {
-        try
+        if(await _userService.IsExistAsync(id))
         {
-            if(await _userService.IsExistAsync(id))
-            {
-                if(await _userService.UpdateAsync(id, updateUserDTO))
-                {
-                    return Ok();
-                }
-                return BadRequest();
-            }
-           return NotFound();
+            return await _userService.UpdateAsync(id, updateUserDTO) ? 
+                Ok() : 
+                BadRequest();
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return NotFound();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -73,26 +53,17 @@ public class UserController : ControllerBase
     [Route("change-password")]
     public async Task<ActionResult> ChangePasswordAsync(long id, ChangePasswordDTO changePasswordDTO)
     {
-        try
+        if(!await _userService.IsExistAsync(id))
         {
-            if(!await _userService.IsExistAsync(id))
-            {
-                return NotFound();
-            }
-            if(!await _userService.IsValidAsync(id, changePasswordDTO.OldPassword))
-            {
-                return BadRequest();
-            }
-            if(await _userService.ChangePasswordAsync(id, changePasswordDTO.NewPassword))
-            {
-                return Ok();
-            }
+            return NotFound();
         }
-        catch (Exception ex)
+        if(!await _userService.IsValidAsync(id, changePasswordDTO.OldPassword))
         {
-            Console.WriteLine(ex.ToString());
+            return BadRequest();
         }
-        return BadRequest();
+        return await _userService.ChangePasswordAsync(id, changePasswordDTO.NewPassword) ?
+            Ok() : 
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -102,72 +73,43 @@ public class UserController : ControllerBase
     [Route("change-skills")]
     public async Task<ActionResult> ChangeSkillsAsync(long id, List<long> skillIds)
     {
-        try
+        if(!await _userService.IsExistAsync(id))
         {
-            if(!await _userService.IsExistAsync(id))
-            {
-                return NotFound();
-            }
-            
-            if(await _userService.ChangeSkillsAsync(id, skillIds))
-            {
-                return Ok();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+            return NotFound();
+        }        
+        return await _userService.ChangeSkillsAsync(id, skillIds) ?
+            Ok() : 
+            BadRequest();
     }
 
     [HttpPost]
     [Route("update-profile-image")]
     public async Task<ActionResult> Image(long id, IFormFile image)
     {
-        try
+        if(await _userService.IsExistAsync(id))
         {
-            if(await _userService.IsExistAsync(id))
+            byte[] imageBytes;
+            using (var item = new MemoryStream())
             {
-                byte[] imageBytes;
-                using (var item = new MemoryStream())
-                {
-                    image.CopyTo(item);
-                    imageBytes = item.ToArray();
-                }
-                if(await _userService.UpdateImageAsync(id, imageBytes))
-                {
-                    return Ok(imageBytes);
-                }
-                return BadRequest();
+                image.CopyTo(item);
+                imageBytes = item.ToArray();
             }
-           return NotFound();
+            return await _userService.UpdateImageAsync(id, imageBytes) ?
+                Ok(imageBytes) : 
+                BadRequest();
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return NotFound();
     }
 
     [HttpPost]
     [Route("Download")]
     public async Task<ActionResult> Download(long id)
     {
-        try
+        if(await _userService.IsExistAsync(id))
         {
-            if(await _userService.IsExistAsync(id))
-            {
-                UserDTO user = await _userService.GetAsync(id);
-                return File(user.ProfileImage, "application/octet-stream", "abc.png");
-
-            }
-           return NotFound();
+            UserDTO user = await _userService.GetAsync(id);
+            return File(user.ProfileImage, "application/octet-stream", "abc.png");
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return NotFound();
     }
 }

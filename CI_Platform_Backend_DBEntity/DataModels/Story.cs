@@ -34,6 +34,15 @@ public partial class Story
     [Column("publish")]
     public bool? Publish { get; set; }
 
+    [Column("created_at", TypeName = "datetime")]
+    public DateTime CreatedAt { get; set; }
+
+    [InverseProperty("Story")]
+    public virtual ICollection<StoryMedium> StoryMedia { get; set; } = new List<StoryMedium>();
+
+    [InverseProperty("Story")]
+    public virtual ICollection<StoryView> StoryViews { get; set; } = new List<StoryView>();
+
     [ForeignKey("UserId")]
     [InverseProperty("Stories")]
     public virtual User User { get; set; } = null!;

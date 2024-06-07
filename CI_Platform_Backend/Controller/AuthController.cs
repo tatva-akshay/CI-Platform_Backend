@@ -1,16 +1,13 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using AutoMapper;
 using CI_Platform_Backend_DBEntity.DataModels;
 using CI_Platform_Backend_Presentation.DTO.Login;
 using CI_Platform_Backend_Presentation.DTO.Register;
 using CI_Platform_Backend_Presentation.DTO.ResetPassword;
 using CI_Platform_Backend_Services;
-using CI_Platform_Backend_Services.Login;
+using CI_Platform_Backend_Services.Auth;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace CI_Platform_Backend.Controller;
 
@@ -19,16 +16,14 @@ namespace CI_Platform_Backend.Controller;
 public class AuthController : ControllerBase
 {
     private readonly IMapper _mapper;
-    private readonly IRegisterUserService _registerUserService;
-    private readonly ILoginService _loginService;
+    private readonly IAuthService _authService;
     private readonly IJwtService _jwtService;
 
-    public AuthController(IMapper mapper, IRegisterUserService registerUserService, ILoginService loginService, IJwtService jwtService)
+    public AuthController(IMapper mapper, IAuthService authService, IJwtService jwtService)
     {
         _mapper = mapper;
-        _registerUserService = registerUserService;
-        _loginService = loginService;
         _jwtService = jwtService;
+        _authService = authService;
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -37,19 +32,10 @@ public class AuthController : ControllerBase
     [Route("register")]
     public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO registerDTO)
     {
-        try
-        {
-            return await _registerUserService.RegisterUserAsync(_mapper.Map<User>(registerDTO)) ? 
-                Ok() : 
-                BadRequest();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return await _authService.RegisterUserAsync(_mapper.Map<User>(registerDTO)) ? 
+            Ok() : 
+            BadRequest();        
     }
-
 
     // Created: 4 June - Dhruvil Bhojani
     // Login Action to Validate User Credentials and return JWT authentication token to client 
@@ -57,17 +43,9 @@ public class AuthController : ControllerBase
     [Route("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginDTO loginDTO)
     {
-        try
-        {
-            return await _loginService.IsValidUserAsync(loginDTO) ? 
-                Ok(_jwtService.AuthenticationToken(loginDTO.Email)) : 
-                NotFound();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return await _authService.IsValidUserAsync(loginDTO) ? 
+            Ok(_jwtService.AuthenticationToken(loginDTO.Email)) :
+            BadRequest();
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -76,17 +54,9 @@ public class AuthController : ControllerBase
     [Route("forget-password")]
     public async Task<IActionResult> ForgetPasswordAsync(string email)
     {
-        try
-        {
-            return await _loginService.IsUserExistAsync(email) ? 
-                Ok(_jwtService.ResetPasswordToken(email)) : 
-                NotFound();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+         return await _authService.IsUserExistAsync(email) ? 
+            Ok(_jwtService.ResetPasswordToken(email)) :
+            BadRequest();
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -97,25 +67,16 @@ public class AuthController : ControllerBase
     [Route("reset-password")]
     public async Task<IActionResult> ResetPasswordAsync(ResetPasswordDTO resetPasswordDTO)
     {
-        try
+        if(!_jwtService.ValidateResetPasswordToken(resetPasswordDTO.Token))
         {
-            if(!_jwtService.ValidateResetPasswordToken(resetPasswordDTO.Token))
-            {
-                return Unauthorized();
-            }
-            if(await _loginService.ResetPasswordAsync(_jwtService.GetEmailFromToken(resetPasswordDTO.Token), resetPasswordDTO.Password))
-            {
-                return Ok();
-            }
-            return BadRequest();
+            return Unauthorized();
         }
-        catch (Exception ex)
+        if(await _authService.ResetPasswordAsync(_jwtService.GetEmailFromToken(resetPasswordDTO.Token), resetPasswordDTO.Password))
         {
-            Console.WriteLine(ex.ToString());
+            return Ok();
         }
         return BadRequest();
     }
-
 
     // Created: 4 June - Dhruvil Bhojani
     // For Demo Purpose of Authentication and Authorization
@@ -124,5 +85,13 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> UsersAsync()
     {
         return Ok();
+    }
+
+    [HttpGet]
+    [Route("/something-went-wrong")]
+    public ActionResult Exception()
+    {
+        var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerFeature>();
+        return BadRequest(exceptionDetails);
     }
 }

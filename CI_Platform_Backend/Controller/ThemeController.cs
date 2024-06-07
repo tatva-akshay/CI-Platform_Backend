@@ -11,9 +11,7 @@ namespace CI_Platform_Backend.Controller;
 [Route("api/[controller]")]
 public class ThemeController : ControllerBase
 {
-
     private readonly IThemeService _themeService;
-
     private readonly IMapper _mapper;
 
     public ThemeController(IThemeService themeService, IMapper mapper)
@@ -28,11 +26,9 @@ public class ThemeController : ControllerBase
     [Route("create")]
     public async Task<ActionResult> CreateAsync(CreateThemeDTO themeDTO)
     {
-        if(await _themeService.AddAsync(_mapper.Map<Theme>(themeDTO)))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _themeService.AddAsync(_mapper.Map<Theme>(themeDTO)) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -41,11 +37,9 @@ public class ThemeController : ControllerBase
     [Route("update")]
     public async Task<ActionResult> UpdateAsync(long id, CreateThemeDTO themeDTO)
     {
-        if(await _themeService.UpdateAsync(id, themeDTO))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _themeService.UpdateAsync(id, themeDTO) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -54,11 +48,9 @@ public class ThemeController : ControllerBase
     [Route("delete")]
     public async Task<ActionResult> DeleteAsync(long id)
     {
-        if(await _themeService.DeleteAsync(id))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _themeService.DeleteAsync(id) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -67,15 +59,7 @@ public class ThemeController : ControllerBase
     [Route("")]
     public async Task<ActionResult> GetAllAsync()
     {
-        try
-        {
-            return Ok(_mapper.Map<List<ThemeDTO>>(await _themeService.GetThemesAsync()));
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return Ok(_mapper.Map<List<ThemeDTO>>(await _themeService.GetThemesAsync()));
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -84,17 +68,9 @@ public class ThemeController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> GetAsync(long id)
     {
-        try
-        {
-            ThemeDTO theme = _mapper.Map<ThemeDTO>(await _themeService.GetThemeAsync(id));
-            return theme == null || theme.ThemeID == 0 ?
-                NotFound() :
-                Ok(theme);
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        ThemeDTO theme = _mapper.Map<ThemeDTO>(await _themeService.GetThemeAsync(id));
+        return theme == null || theme.ThemeID == 0 ?
+            NotFound() :
+            Ok(theme);
     }
 }

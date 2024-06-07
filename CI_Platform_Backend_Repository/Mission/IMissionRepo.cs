@@ -9,5 +9,5 @@ public interface IMissionRepo : IRepository<CI_Platform_Backend_DBEntity.DataMod
 
     Task<CI_Platform_Backend_DBEntity.DataModels.Mission> GetWithAllDataAsync(long userId, long missionId);
 
-    Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long countryId, long cityId, long themeId);
+    Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long missionId, long userId);
 }

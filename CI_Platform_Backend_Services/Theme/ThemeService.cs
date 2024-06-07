@@ -16,24 +16,21 @@ public class ThemeService : IThemeService
     public async Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DataModels.Theme theme)
     {
         CI_Platform_Backend_DBEntity.DataModels.Theme themeTemp = await _themeRepo.GetAsync(x => x.Theme1 == theme.Theme1);
-        if(themeTemp == null || themeTemp.ThemeId == 0)
-        {
-            return await _themeRepo.AddAsync(theme);
-        }
-        return false;
+        
+        return (themeTemp == null || themeTemp.ThemeId == 0) && await _themeRepo.AddAsync(theme);
     }
     
     public async Task<bool> UpdateAsync(long id, CreateThemeDTO themeDTO)
     {
         CI_Platform_Backend_DBEntity.DataModels.Theme theme = await _themeRepo.GetAsync(x => x.ThemeId == id);
-        if(theme == null || theme.ThemeId == 0)
+        CI_Platform_Backend_DBEntity.DataModels.Theme theme2 = await _themeRepo.GetAsync(x => x.Theme1 == themeDTO.Name);
+        
+        if(theme == null || theme.ThemeId == 0 || (theme2!=null && theme2.ThemeId > 0))
         {
             return false;
-        }        
-
+        }
         theme.Theme1 = themeDTO.Name;
         theme.Status = themeDTO.IsActive;
-
         return await _themeRepo.UpdateAsync(theme);
     }
 
@@ -50,12 +47,7 @@ public class ThemeService : IThemeService
     public async Task<bool> DeleteAsync(long id)
     {
         CI_Platform_Backend_DBEntity.DataModels.Theme theme = await _themeRepo.GetAsync(x => x.ThemeId == id);
-        if(theme == null || theme.ThemeId == 0)
-        {
-            return false;
-        }  
-        return await _themeRepo.DeleteAsync(theme);
+        
+        return theme != null && theme.ThemeId != 0 && await _themeRepo.DeleteAsync(theme);
     }
-
-
 }

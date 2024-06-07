@@ -13,4 +13,6 @@ public interface IMissionService
     Task<List<MissionDTO>> GetAllAsync(long userId);
 
     Task<MissionDetailsDTO> GetAsync(long userId, long missionId);
+
+    Task<List<RelatedMissionDTO>> RelatedMissionsAsync(long userId, long missionId);
 }

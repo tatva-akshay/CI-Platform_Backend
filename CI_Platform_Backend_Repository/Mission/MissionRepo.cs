@@ -27,13 +27,77 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.Mi
             .FirstOrDefaultAsync(x=>x.MissionId == missionId);
     }
 
-    public async Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long countryId, long cityId, long themeId)
+    public async Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long missionId, long userId)
     {
-        return new List<RelatedMissionDTO>();
-        // return await _dbContext.Missions.OrderBy(x=>x.).Take(3).Select(x=>new RelatedMissionDTO()
-        // {
-
-        // }).ToListAsync();
+        List<RelatedMissionDTO> relatedMissionDTOs = new List<RelatedMissionDTO>();
+        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _dbContext.Missions.FirstOrDefaultAsync(x=>x.MissionId == missionId);
+        if(mission == null || mission.MissionId == 0)
+        {
+            return relatedMissionDTOs;
+        }
+        relatedMissionDTOs.AddRange(await _dbContext.Missions.Where(x=>x.Country == mission.Country && x.MissionId != missionId && !relatedMissionDTOs.Select(x=>x.MissionId).Contains(x.MissionId)).Take(3).Select(x=>new RelatedMissionDTO()
+        {
+            MissionId = x.MissionId,
+            Status = x.Status,
+            City = x.City,
+            Country = x.Country,
+            Title = x.MissionTitle,
+            ShortDescription = x.MissionShortDescription,
+            OrganisationName = x.MissionOrganisationName,
+            Rating = x.MissionRating.Value,
+            StartDate = x.MissionStartDate,
+            EndDate = x.MissionEndDate,
+            RegistrationDeadline = x.MissionRegistrationDeadline.Value,
+            TotalSeats = x.TotalSeats.Value,
+            SeatsLeft = x.TotalSeats.Value - x.Volunteers.Count,
+            IsFavourite = x.MissionFavs.Any(x=>x.UserId == userId),
+            Theme = x.MissionTheme,
+        }).ToListAsync());
+        if(relatedMissionDTOs.Count>=3)
+        {
+            return relatedMissionDTOs;
+        }
+        relatedMissionDTOs.AddRange(await _dbContext.Missions.Where(x=>x.City == mission.City && x.MissionId != missionId && !relatedMissionDTOs.Select(x=>x.MissionId).Contains(x.MissionId)).Take(3 - relatedMissionDTOs.Count).Select(x=>new RelatedMissionDTO()
+        {
+            MissionId = x.MissionId,
+            Status = x.Status,
+            City = x.City,
+            Country = x.Country,
+            Title = x.MissionTitle,
+            ShortDescription = x.MissionShortDescription,
+            OrganisationName = x.MissionOrganisationName,
+            Rating = x.MissionRating.Value,
+            StartDate = x.MissionStartDate,
+            EndDate = x.MissionEndDate,
+            RegistrationDeadline = x.MissionRegistrationDeadline.Value,
+            TotalSeats = x.TotalSeats.Value,
+            SeatsLeft = x.TotalSeats.Value - x.Volunteers.Count,
+            IsFavourite = x.MissionFavs.Any(x=>x.UserId == userId),
+            Theme = x.MissionTheme,
+        }).ToListAsync());
+        if(relatedMissionDTOs.Count>=3)
+        {
+            return relatedMissionDTOs;
+        }
+        relatedMissionDTOs.AddRange(await _dbContext.Missions.Where(x=>x.MissionTheme == mission.MissionTheme && x.MissionId != missionId && !relatedMissionDTOs.Select(x=>x.MissionId).Contains(x.MissionId)).Take(3 - relatedMissionDTOs.Count).Select(x=>new RelatedMissionDTO()
+        {
+            MissionId = x.MissionId,
+            Status = x.Status,
+            City = x.City,
+            Country = x.Country,
+            Title = x.MissionTitle,
+            ShortDescription = x.MissionShortDescription,
+            OrganisationName = x.MissionOrganisationName,
+            Rating = x.MissionRating.Value,
+            StartDate = x.MissionStartDate,
+            EndDate = x.MissionEndDate,
+            RegistrationDeadline = x.MissionRegistrationDeadline.Value,
+            TotalSeats = x.TotalSeats.Value,
+            SeatsLeft = x.TotalSeats.Value - x.Volunteers.Count,
+            IsFavourite = x.MissionFavs.Any(x=>x.UserId == userId),
+            Theme = x.MissionTheme,
+        }).ToListAsync());
+        return relatedMissionDTOs;
     }
 
 

@@ -12,9 +12,7 @@ namespace CI_Platform_Backend.Controller;
 public class ContactUsController : ControllerBase
 {
     private readonly IUserService _userService;
-
     private readonly IContactUsService _contactUsService;
-
     private readonly IMapper _mapper;
 
     public ContactUsController(IUserService userService, IMapper mapper, IContactUsService contactUsService)
@@ -30,21 +28,12 @@ public class ContactUsController : ControllerBase
     [Route("")]
     public async Task<ActionResult> AddAsync(long id, ContactUsDTO contactUsDTO)
     {
-        try
+        if(!await _userService.IsExistAsync(id))
         {
-            if(!await _userService.IsExistAsync(id))
-            {
-                return NotFound();
-            }
-            if(await _contactUsService.AddAsync(id, _mapper.Map<ContactUss>(contactUsDTO)))
-            {
-                return Ok();
-            }
+            return NotFound();
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return await _contactUsService.AddAsync(id, _mapper.Map<ContactUss>(contactUsDTO)) ?
+            Ok() :
+            BadRequest();
     }
 }

@@ -12,7 +12,6 @@ namespace CI_Platform_Backend.Controller;
 public class SkillController : ControllerBase
 {
     private readonly ISkillService _skillService;
-
     private readonly IMapper _mapper;
 
     public SkillController(ISkillService skillService, IMapper mapper)
@@ -27,11 +26,9 @@ public class SkillController : ControllerBase
     [Route("create")]
     public async Task<ActionResult> CreateAsync(CreateSkillDTO skillDTO)
     {
-        if(await _skillService.AddAsync(_mapper.Map<Skill>(skillDTO)))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _skillService.AddAsync(_mapper.Map<Skill>(skillDTO)) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -40,11 +37,9 @@ public class SkillController : ControllerBase
     [Route("update")]
     public async Task<ActionResult> UpdateAsync(long id, CreateSkillDTO skillDTO)
     {
-        if(await _skillService.UpdateAsync(id, skillDTO))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _skillService.UpdateAsync(id, skillDTO) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -53,11 +48,9 @@ public class SkillController : ControllerBase
     [Route("delete")]
     public async Task<ActionResult> DeleteAsync(long id)
     {
-        if(await _skillService.DeleteAsync(id))
-        {
-            return Ok();
-        }
-        return BadRequest();
+        return await _skillService.DeleteAsync(id) ?
+            Ok() :
+            BadRequest();
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -66,15 +59,7 @@ public class SkillController : ControllerBase
     [Route("")]
     public async Task<ActionResult> GetAllAsync()
     {
-        try
-        {
-            return Ok(_mapper.Map<List<SkillDTO>>(await _skillService.GetSkillsAsync()));
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        return Ok(_mapper.Map<List<SkillDTO>>(await _skillService.GetSkillsAsync()));
     }
 
     // Created: 5 June - Dhruvil Bhojani
@@ -83,17 +68,9 @@ public class SkillController : ControllerBase
     [Route("{id}")]
     public async Task<ActionResult> GetAsync(long id)
     {
-        try
-        {
-            SkillDTO skill = _mapper.Map<SkillDTO>(await _skillService.GetSkillAsync(id));
-            return skill == null || skill.SkillID == 0 ?
-                NotFound() :
-                Ok(skill);
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        return BadRequest();
+        SkillDTO skill = _mapper.Map<SkillDTO>(await _skillService.GetSkillAsync(id));
+        return skill == null || skill.SkillID == 0 ?
+            NotFound() :
+            Ok(skill);
     }
 }

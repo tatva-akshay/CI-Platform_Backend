@@ -42,8 +42,6 @@ public class MissionDetailsDTO
 
     public byte[]?[] Documents { get; set; }
 
-    public List<CommentDTO>? Comments{ get; set; }
-
     public List<string> Skills { get; set; }
 
     public string Availability { get; set; }
@@ -53,8 +51,6 @@ public class MissionDetailsDTO
     public List<RecentVolunteerDTO>? RecentVolunteers{ get; set; }
 
     public long VolunteerCount { get; set; }
-
-    public List<RelatedMissionDTO>? RelatedMissions { get; set; }
 
     public bool IsFavourite { get; set; }
 
