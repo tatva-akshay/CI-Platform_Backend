@@ -45,6 +45,13 @@ public class MissionService : IMissionService
         return !(mission == null || mission.MissionId == 0);
     }
 
+    public async Task<bool> IsValidRegistraionCriteria(long missionId, long userId)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == missionId && x.MissionRegistrationDeadline >= DateOnly.FromDateTime(DateTime.Now) && x.TotalSeats > x.MissionApplications.Count(x=>x.IsApproved == true && x.DeletedAt == null));
+        
+        return !(mission == null || mission.MissionId == 0);
+    }
+
     public async Task<bool> AddAsync(long userId, CreateMissionDTO createMissionDTO)
     {
         string countryName = await _countryRepo.GetNameAsync(createMissionDTO.CountryId);
@@ -75,15 +82,19 @@ public class MissionService : IMissionService
             MissionTheme = themeName,
             MissionSkills = skillNames,
             MissionAvailability = availability,
-            Status = 1,
-            MissionGoals = createMissionDTO.MissionType == 2 ? [
+            Status = 1
+        };
+
+        if(createMissionDTO.MissionType == 2 && !string.IsNullOrEmpty(createMissionDTO.Goal))
+        {
+            mission.MissionGoals = [
                 new MissionGoal()
                 {
                     Goal = createMissionDTO.Goal,
                     GoalStatus = 1
                 }
-            ] : [],
-        };
+            ];
+        }
 
         if(createMissionDTO.Images?.Count > 0)
         {
@@ -118,7 +129,7 @@ public class MissionService : IMissionService
                 });
             });
         }
-        await _missionRepo.AddAsync(mission);
+        var a = await _missionRepo.AddAsync(mission);
         return true;
     }
 
@@ -209,15 +220,23 @@ public class MissionService : IMissionService
 
     public async Task<bool> ApplyAsync(long userId, long missionId)
     {
-        return await _missionApplicationRepo.AddAsync(new MissionApplication()
+        MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId && x.DeletedAt == null);
+        return (missionApplication == null || missionApplication.ApplicationId == 0) ? await _missionApplicationRepo.AddAsync(new MissionApplication()
         {
             UserId = userId,
             MissionId = missionId,
-        });
+        }) : false;
     }
 
     public async Task<bool> ApproveAsync(long userId, long missionId)
     {
+        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x=>x.MissionId == missionId && x.TotalSeats > x.MissionApplications.Count(x=>x.IsApproved == true && x.DeletedAt == null));
+        
+        if(mission == null || mission.MissionId == 0)
+        {
+            return false;
+        }
+
         MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId);
         if(missionApplication == null || missionApplication.MissionId == 0)
         {

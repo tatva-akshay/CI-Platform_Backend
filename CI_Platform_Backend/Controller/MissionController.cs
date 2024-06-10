@@ -69,7 +69,7 @@ public class MissionController : ControllerBase
     {
         if(await _userService.IsExistAsync(userId))
         {
-            return await _missionService.IsExistAsync(missionId) ?
+            return await _missionService.IsExistAsync(missionId) && await _missionService.IsValidRegistraionCriteria(missionId, userId) ?
                 Ok(await _missionService.ApplyAsync(userId, missionId)) :
                 NotFound();
         }

@@ -122,5 +122,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseExceptionHandler("/something-went-wrong");
 app.UseHttpsRedirection();
+app.UseCors(options => {
+    options.AllowAnyOrigin();
+    options.AllowAnyHeader();
+    options.AllowAnyMethod();
+});
 app.MapControllers();
 app.Run();

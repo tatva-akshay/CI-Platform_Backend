@@ -1,5 +1,7 @@
+using System.Net;
 using AutoMapper;
 using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.Login;
 using CI_Platform_Backend_Presentation.DTO.Register;
 using CI_Platform_Backend_Presentation.DTO.ResetPassword;
@@ -18,6 +20,7 @@ public class AuthController : ControllerBase
     private readonly IMapper _mapper;
     private readonly IAuthService _authService;
     private readonly IJwtService _jwtService;
+    private readonly APIResponse _aPIResponse = new APIResponse();
 
     public AuthController(IMapper mapper, IAuthService authService, IJwtService jwtService)
     {
@@ -32,9 +35,23 @@ public class AuthController : ControllerBase
     [Route("register")]
     public async Task<IActionResult> RegisterAsync([FromBody] RegisterDTO registerDTO)
     {
-        return await _authService.RegisterUserAsync(_mapper.Map<User>(registerDTO)) ? 
-            Ok() : 
-            BadRequest();        
+        if(await _authService.IsUserExistAsync(registerDTO.Email))
+        {
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
+            _aPIResponse.ErrorMessages = ["User on entered email already Exists."];
+            return BadRequest(_aPIResponse);
+        }
+        
+        if(await _authService.RegisterUserAsync(_mapper.Map<User>(registerDTO)))
+        {
+            _aPIResponse.IsSuccess = true;
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.NoContent;
+            return Ok(_aPIResponse);
+        } 
+        
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
+        _aPIResponse.ErrorMessages = ["New User Registration Failed"];
+        return BadRequest(_aPIResponse);
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -43,9 +60,19 @@ public class AuthController : ControllerBase
     [Route("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginDTO loginDTO)
     {
-        return await _authService.IsValidUserAsync(loginDTO) ? 
-            Ok(_jwtService.AuthenticationToken(loginDTO.Email)) :
-            BadRequest();
+        string userName = await _authService.IsValidUserAsync(loginDTO);
+        if(!string.IsNullOrEmpty(userName))
+        {
+            _aPIResponse.IsSuccess = true;
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+            _aPIResponse.Token = _jwtService.AuthenticationToken(loginDTO.Email);
+            _aPIResponse.Result = userName;
+            return Ok(_aPIResponse);
+        }
+
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["Invalid Credentials"];
+        return NotFound(_aPIResponse);
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -54,9 +81,17 @@ public class AuthController : ControllerBase
     [Route("forget-password")]
     public async Task<IActionResult> ForgetPasswordAsync(string email)
     {
-         return await _authService.IsUserExistAsync(email) ? 
-            Ok(_jwtService.ResetPasswordToken(email)) :
-            BadRequest();
+        if(await _authService.IsUserExistAsync(email))
+        {
+            _aPIResponse.IsSuccess = true;
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+            _aPIResponse.Token = _jwtService.ResetPasswordToken(email);
+            return Ok(_aPIResponse);
+        } 
+
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["Invalid Email Id"];
+        return NotFound(_aPIResponse);
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -69,28 +104,28 @@ public class AuthController : ControllerBase
     {
         if(!_jwtService.ValidateResetPasswordToken(resetPasswordDTO.Token))
         {
-            return Unauthorized();
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.Unauthorized;
+            _aPIResponse.ErrorMessages = ["Token is invalid"];
+            return Unauthorized(_aPIResponse);
         }
         if(await _authService.ResetPasswordAsync(_jwtService.GetEmailFromToken(resetPasswordDTO.Token), resetPasswordDTO.Password))
         {
-            return Ok();
+            _aPIResponse.IsSuccess = true;
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+            _aPIResponse.Result = "Password changed Successfully";
+            return Ok(_aPIResponse);
         }
-        return BadRequest();
-    }
-
-    // Created: 4 June - Dhruvil Bhojani
-    // For Demo Purpose of Authentication and Authorization
-    [HttpGet]
-    [Authorize(Roles ="Other")]
-    public async Task<IActionResult> UsersAsync()
-    {
-        return Ok();
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["Email Id is invalid in token."];
+        return NotFound(_aPIResponse);
     }
 
     [HttpGet]
     [Route("/something-went-wrong")]
     public ActionResult Exception()
     {
-        return BadRequest(HttpContext.Features.Get<IExceptionHandlerFeature>());
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
+        _aPIResponse.ErrorMessages = [HttpContext.Features.Get<IExceptionHandlerFeature>()?.ToString()!];
+        return BadRequest(_aPIResponse);
     }
 }

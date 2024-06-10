@@ -12,7 +12,7 @@ public class CreateStoryDTO
 
     public string Description { get; set; }
 
-    public string VideoUrls { get; set; }
+    public string? VideoUrls { get; set; }
 
     public List<IFormFile>? Images { get; set; }
 }

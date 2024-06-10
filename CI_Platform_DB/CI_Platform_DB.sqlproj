@@ -6,7 +6,7 @@
     <Name>CI_Platform_DB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{011c29f4-cf44-4356-92d8-ea161232871c}</ProjectGuid>
+    <ProjectGuid>{3acb7468-2ba9-44ff-9776-654c143789a5}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>

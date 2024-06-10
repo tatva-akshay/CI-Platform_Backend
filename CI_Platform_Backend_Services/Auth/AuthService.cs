@@ -11,11 +11,11 @@ public class AuthService : IAuthService
         _userRepo = userRepo;
     }
 
-    public async Task<bool> IsValidUserAsync(LoginDTO loginDTO)
+    public async Task<string> IsValidUserAsync(LoginDTO loginDTO)
     {
         CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.Email == loginDTO.Email);
 
-        return !(user == null ||  user.UserId == 0) && user.Password == loginDTO.Password;
+        return !(user == null ||  user.UserId == 0) && user.Password == loginDTO.Password ? user.FirstName + " " + user.LastName : "";
     }
 
     public async Task<bool> IsUserExistAsync(string email)

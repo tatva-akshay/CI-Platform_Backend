@@ -37,6 +37,21 @@ public class CMSPageService : ICMSPageService
         return await _cMSPrivacyPolicyRepo.UpdateAsync(cmsPrivacyPolicy);
     }
 
+    public async Task<bool> IsExistsAsync(long id)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+        
+        return !(cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0);
+    }
+
+    public async Task<bool> IsExistsAsync(long id, string slug)
+    {
+        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug.ToLower() == slug.ToLower());
+        
+        return (cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0 || cmsPrivacyPolicy.CmsId == id);
+    }
+
+
     public async Task<List<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy>> GetCMSPagesAsync()
     {
         return await _cMSPrivacyPolicyRepo.GetAsync();
@@ -45,6 +60,11 @@ public class CMSPageService : ICMSPageService
     public async Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(long id)
     {
         return await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+    }
+
+    public async Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(string slug)
+    {
+        return await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug == slug);
     }
 
     public async Task<bool> DeleteAsync(long id)

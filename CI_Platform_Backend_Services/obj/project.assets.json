@@ -3077,11 +3077,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
+      "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
       "projectName": "CI_Platform_Backend_Services",
-      "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
+      "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
       "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-      "outputPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\obj\\",
+      "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3098,11 +3098,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj": {
-              "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj"
+            "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj": {
+              "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj"
             },
-            "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
-              "projectPath": "d:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
+            "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
+              "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
             }
           }
         }

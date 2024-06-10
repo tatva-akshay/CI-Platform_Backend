@@ -1,5 +1,6 @@
 using AutoMapper;
 using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.ContactUs;
 using CI_Platform_Backend_Services.ContactUs;
 using CI_Platform_Backend_Services.User;
@@ -14,6 +15,7 @@ public class ContactUsController : ControllerBase
     private readonly IUserService _userService;
     private readonly IContactUsService _contactUsService;
     private readonly IMapper _mapper;
+    private readonly APIResponse _aPIResponse = new APIResponse();
 
     public ContactUsController(IUserService userService, IMapper mapper, IContactUsService contactUsService)
     {

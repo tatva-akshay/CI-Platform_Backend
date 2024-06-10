@@ -91,8 +91,8 @@ public class StoryService : IStoryService
 
     public async Task<bool> IsValidAsync(long missionId, long userId)
     {
-        MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId);
-        return !(missionApplication == null || missionApplication.ApplicationId == 0 || missionApplication.IsApproved != true);
+        MissionApplication missionApplication = await _missionApplicationRepo.GetAsync(x=>x.MissionId == missionId && x.UserId == userId && x.IsApproved== true);
+        return !(missionApplication == null || missionApplication.ApplicationId == 0);
     }
 
     public async Task<List<StoryDTO>> GetAllAsync(long missionId)

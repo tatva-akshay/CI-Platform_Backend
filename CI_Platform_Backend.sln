@@ -3,25 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI_Platform_Backend", "CI_Platform_Backend\CI_Platform_Backend.csproj", "{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CI_Platform_Backend", "CI_Platform_Backend\CI_Platform_Backend.csproj", "{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI_Platform_Backend_Services", "CI_Platform_Backend_Services\CI_Platform_Backend_Services.csproj", "{8E34AC7B-DB46-4697-8D8A-F765B87BE13B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CI_Platform_Backend_Services", "CI_Platform_Backend_Services\CI_Platform_Backend_Services.csproj", "{8E34AC7B-DB46-4697-8D8A-F765B87BE13B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI_Platform_Backend_Repository", "CI_Platform_Backend_Repository\CI_Platform_Backend_Repository.csproj", "{E87AD519-9EFA-44B3-9C3D-3CDDFC747750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CI_Platform_Backend_Repository", "CI_Platform_Backend_Repository\CI_Platform_Backend_Repository.csproj", "{E87AD519-9EFA-44B3-9C3D-3CDDFC747750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI_Platform_Backend_DBEntity", "CI_Platform_Backend_DBEntity\CI_Platform_Backend_DBEntity.csproj", "{4E2A8794-0DB4-4AA2-BA54-607C792F6AB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CI_Platform_Backend_DBEntity", "CI_Platform_Backend_DBEntity\CI_Platform_Backend_DBEntity.csproj", "{4E2A8794-0DB4-4AA2-BA54-607C792F6AB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI_Platform_Backend_Utilities", "CI_Platform_Backend_Utilities\CI_Platform_Backend_Utilities.csproj", "{75B700E2-523C-43A6-B0C4-A42500A6BE74}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CI_Platform_Backend_Utilities", "CI_Platform_Backend_Utilities\CI_Platform_Backend_Utilities.csproj", "{75B700E2-523C-43A6-B0C4-A42500A6BE74}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI_Platform_Backend_Presentation", "CI_Platform_Backend_Presentation\CI_Platform_Backend_Presentation.csproj", "{C08DD641-A2AD-4A32-985B-1378FD2D5E46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CI_Platform_Backend_Presentation", "CI_Platform_Backend_Presentation\CI_Platform_Backend_Presentation.csproj", "{C08DD641-A2AD-4A32-985B-1378FD2D5E46}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CI_Platform_DB", "CI_Platform_DB\CI_Platform_DB.sqlproj", "{3ACB7468-2BA9-44FF-9776-654C143789A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -48,5 +47,17 @@ Global
 		{C08DD641-A2AD-4A32-985B-1378FD2D5E46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C08DD641-A2AD-4A32-985B-1378FD2D5E46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C08DD641-A2AD-4A32-985B-1378FD2D5E46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ACB7468-2BA9-44FF-9776-654C143789A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ACB7468-2BA9-44FF-9776-654C143789A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ACB7468-2BA9-44FF-9776-654C143789A5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3ACB7468-2BA9-44FF-9776-654C143789A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ACB7468-2BA9-44FF-9776-654C143789A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3ACB7468-2BA9-44FF-9776-654C143789A5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80EEE133-9EC0-4481-9D5F-993C64F6DF20}
 	EndGlobalSection
 EndGlobal

@@ -8,6 +8,8 @@ public interface IMissionService
 
     Task<bool> IsExistAsync(long missionId);
 
+    Task<bool> IsValidRegistraionCriteria(long missionId, long userId);
+
     Task<bool> AddAsync(long userId, CreateMissionDTO createMissionDTO);
 
     Task<List<MissionDTO>> GetAllAsync(long userId);

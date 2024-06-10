@@ -4,7 +4,7 @@ namespace CI_Platform_Backend_Services.Auth;
 
 public interface IAuthService
 {
-    Task<bool> IsValidUserAsync(LoginDTO loginDTO);
+    Task<string> IsValidUserAsync(LoginDTO loginDTO);
 
     Task<bool> IsUserExistAsync(string email);
 
