@@ -1,4 +1,5 @@
 using AutoMapper;
+using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.User;
 using CI_Platform_Backend_Services.User;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ public class UserController : ControllerBase
 {
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
+    private readonly APIResponse _aPIResponse = new APIResponse();
 
     public UserController(IUserService userService, IMapper mapper)
     {
@@ -108,7 +110,10 @@ public class UserController : ControllerBase
         if(await _userService.IsExistAsync(id))
         {
             UserDTO user = await _userService.GetAsync(id);
-            return File(user.ProfileImage, "application/octet-stream", "abc.png");
+            _aPIResponse.IsSuccess = true;
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+            _aPIResponse.Result = user.ProfileImage;
+            return Ok(_aPIResponse);
         }
         return NotFound();
     }

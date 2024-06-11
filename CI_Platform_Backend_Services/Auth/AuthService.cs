@@ -21,7 +21,7 @@ public class AuthService : IAuthService
     {
         CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.Email == loginDTO.Email);
 
-        return !(user == null ||  user.UserId == 0) && user.Password == loginDTO.Password ? user.FirstName + " " + user.LastName : "";
+        return !(user == null ||  user.UserId == 0) && user.Password == loginDTO.Password ? user.UserId + "#" + user.FirstName + " " + user.LastName : "";
     }
 
     public async Task<bool> IsUserExistAsync(string email)

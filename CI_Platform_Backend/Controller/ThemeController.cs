@@ -1,5 +1,6 @@
 using AutoMapper;
 using CI_Platform_Backend_DBEntity.DbModels;
+using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.CreateTheme;
 using CI_Platform_Backend_Presentation.DTO.Theme;
 using CI_Platform_Backend_Services.Theme;
@@ -13,6 +14,7 @@ public class ThemeController : ControllerBase
 {
     private readonly IThemeService _themeService;
     private readonly IMapper _mapper;
+    private readonly APIResponse _aPIResponse = new APIResponse();
 
     public ThemeController(IThemeService themeService, IMapper mapper)
     {
@@ -59,7 +61,10 @@ public class ThemeController : ControllerBase
     [Route("")]
     public async Task<ActionResult> GetAllAsync()
     {
-        return Ok(_mapper.Map<List<ThemeDTO>>(await _themeService.GetThemesAsync()));
+        _aPIResponse.IsSuccess = true;
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+        _aPIResponse.Result = _mapper.Map<List<ThemeDTO>>(await _themeService.GetThemesAsync());
+        return Ok(_aPIResponse);
     }
 
     // Created: 5 June - Dhruvil Bhojani
