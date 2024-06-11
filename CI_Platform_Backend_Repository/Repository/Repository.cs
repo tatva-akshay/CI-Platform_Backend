@@ -6,10 +6,10 @@ namespace CI_Platform_Backend_Repository.Repository;
 
 public class Repository<T> : IRepository<T> where T : class
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly CIPlatformDbContext _dbContext;
     internal DbSet<T> _dbSet;
 
-    public Repository(ApplicationDbContext dbContext)
+    public Repository(CIPlatformDbContext dbContext)
     {
         _dbContext = dbContext;
         _dbSet = _dbContext.Set<T>();

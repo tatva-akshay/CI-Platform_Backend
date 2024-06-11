@@ -4,7 +4,7 @@ namespace CI_Platform_Backend_Services.CMSPage;
 
 public interface ICMSPageService
 {
-    Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy);
+    Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy);
     
     Task<bool> UpdateAsync(long id, CreateCMSPageDTO cMSPageDTO);
 
@@ -14,9 +14,9 @@ public interface ICMSPageService
 
     Task<bool> DeleteAsync(long id);
 
-    Task<List<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy>> GetCMSPagesAsync();
+    Task<List<CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy>> GetCMSPagesAsync();
 
-    Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(long id);
+    Task<CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy> GetCMSPageAsync(long id);
 
-    Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(string slug);
+    Task<CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy> GetCMSPageAsync(string slug);
 }

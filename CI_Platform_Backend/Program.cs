@@ -5,6 +5,7 @@ using CI_Platform_Backend_Repository.CMSPrivacyPolicyRepo;
 using CI_Platform_Backend_Repository.Comment;
 using CI_Platform_Backend_Repository.ContactUs;
 using CI_Platform_Backend_Repository.Country;
+using CI_Platform_Backend_Repository.LoginCarousel;
 using CI_Platform_Backend_Repository.Mission;
 using CI_Platform_Backend_Repository.MissionApplication;
 using CI_Platform_Backend_Repository.Skill;
@@ -18,6 +19,7 @@ using CI_Platform_Backend_Services.Auth;
 using CI_Platform_Backend_Services.CMSPage;
 using CI_Platform_Backend_Services.Comment;
 using CI_Platform_Backend_Services.ContactUs;
+using CI_Platform_Backend_Services.Email;
 using CI_Platform_Backend_Services.JwtService;
 using CI_Platform_Backend_Services.Mission;
 using CI_Platform_Backend_Services.Skill;
@@ -26,6 +28,7 @@ using CI_Platform_Backend_Services.Theme;
 using CI_Platform_Backend_Services.User;
 using CI_Platform_Backend_Utilities.AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -34,6 +37,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
+builder.Services.AddDbContext<CIPlatformDbContext>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => {
     options.MapType<DateOnly>(() => new OpenApiSchema { 
@@ -85,7 +90,9 @@ builder.Services.AddAuthentication(x=>
     };
 });
 
-builder.Services.AddDbContext<ApplicationDbContext>();
+builder.Services.AddDbContext<CIPlatformDbContext>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtService, JwtService>();
@@ -98,6 +105,7 @@ builder.Services.AddScoped<IMissionService, MissionService>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IStoryService, StoryService>();
 builder.Services.AddScoped<ICMSPageService, CMSPageService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddScoped<IUserRepo, UserRepo>();
 builder.Services.AddScoped<ICountryRepo, CountryRepo>();
@@ -111,6 +119,8 @@ builder.Services.AddScoped<IStoryRepo, StoryRepo>();
 builder.Services.AddScoped<IStoryViewRepo, StoryViewRepo>();
 builder.Services.AddScoped<IMissionApplicationRepo, MissionApplicationRepo>();
 builder.Services.AddScoped<ICMSPrivacyPolicyRepo, CMSPrivacyPolicyRepo>();
+builder.Services.AddScoped<ILoginCarouselRepo, LoginCarouselRepo>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

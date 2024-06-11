@@ -1,5 +1,5 @@
 using AutoMapper;
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.CreateTheme;
 using CI_Platform_Backend_Presentation.DTO.Theme;
 using CI_Platform_Backend_Services.Theme;

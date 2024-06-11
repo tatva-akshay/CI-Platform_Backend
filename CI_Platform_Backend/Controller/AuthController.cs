@@ -1,15 +1,19 @@
 using System.Net;
 using AutoMapper;
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation;
+using CI_Platform_Backend_Presentation.DTO.Carousel;
+using CI_Platform_Backend_Presentation.DTO.ForgetPassword;
 using CI_Platform_Backend_Presentation.DTO.Login;
 using CI_Platform_Backend_Presentation.DTO.Register;
 using CI_Platform_Backend_Presentation.DTO.ResetPassword;
 using CI_Platform_Backend_Services;
 using CI_Platform_Backend_Services.Auth;
+using CI_Platform_Backend_Services.Email;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CI_Platform_Backend.Controller;
 
@@ -20,13 +24,15 @@ public class AuthController : ControllerBase
     private readonly IMapper _mapper;
     private readonly IAuthService _authService;
     private readonly IJwtService _jwtService;
+    private readonly IEmailService _emailService;
     private readonly APIResponse _aPIResponse = new APIResponse();
 
-    public AuthController(IMapper mapper, IAuthService authService, IJwtService jwtService)
+    public AuthController(IMapper mapper, IAuthService authService, IJwtService jwtService, IEmailService emailService)
     {
         _mapper = mapper;
         _jwtService = jwtService;
         _authService = authService;
+        _emailService = emailService;
     }
 
     // Created: 4 June - Dhruvil Bhojani
@@ -79,13 +85,14 @@ public class AuthController : ControllerBase
     // Forget Password Action to Validate User Email and return JWT token with email to client
     [HttpPost]
     [Route("forget-password")]
-    public async Task<IActionResult> ForgetPasswordAsync(string email)
+    public async Task<IActionResult> ForgetPasswordAsync(ForgetPasswordDTO forgetPasswordDTO)
     {
-        if(await _authService.IsUserExistAsync(email))
+        if(await _authService.IsUserExistAsync(forgetPasswordDTO.Email))
         {
             _aPIResponse.IsSuccess = true;
             _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
-            _aPIResponse.Token = _jwtService.ResetPasswordToken(email);
+            _aPIResponse.Token = _jwtService.ResetPasswordToken(forgetPasswordDTO.Email);
+            _emailService.SendResetPasswordAsync(forgetPasswordDTO.Email, _aPIResponse.Token);
             return Ok(_aPIResponse);
         } 
 
@@ -126,6 +133,42 @@ public class AuthController : ControllerBase
     {
         _aPIResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
         _aPIResponse.ErrorMessages = [HttpContext.Features.Get<IExceptionHandlerFeature>()?.ToString()!];
+        return BadRequest(_aPIResponse);
+    }
+
+    [HttpGet]
+    [Route("carousels")]
+    public async Task<ActionResult> CarouselsAsync()
+    {
+        List<CarouselDTO> carouselDTOs = _mapper.Map<List<CarouselDTO>>(await _authService.GetCarouselsAsync());
+        _aPIResponse.StatusCode = HttpStatusCode.OK;
+        _aPIResponse.Result = carouselDTOs;
+        _aPIResponse.IsSuccess = true;
+        return Ok(_aPIResponse);
+    }
+
+    [HttpPost]
+    [Route("carousels")]
+    public async Task<ActionResult> AddCarouselAsync(CreateCarouselDTO createCarouselDTO)
+    {
+        LoginCarousel loginCarousel = _mapper.Map<LoginCarousel>(createCarouselDTO);
+        byte[] imageBytes;
+        using (var item = new MemoryStream())
+        {
+            createCarouselDTO.Image.CopyTo(item);
+            imageBytes = item.ToArray();
+        }
+        loginCarousel.CarouselImage = imageBytes;
+
+        if (await _authService.AddCarouselAsync(loginCarousel))
+        {
+            _aPIResponse.StatusCode = HttpStatusCode.OK;
+            _aPIResponse.IsSuccess = true;
+            return Ok(_aPIResponse);
+        }
+
+        _aPIResponse.StatusCode = HttpStatusCode.BadRequest;
+        _aPIResponse.ErrorMessages = ["Something went wrong"];
         return BadRequest(_aPIResponse);
     }
 }

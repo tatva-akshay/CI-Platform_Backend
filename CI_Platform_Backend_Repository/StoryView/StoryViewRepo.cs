@@ -2,11 +2,11 @@ using CI_Platform_Backend_DBEntity.Context;
 using CI_Platform_Backend_Repository.Repository;
 namespace CI_Platform_Backend_Repository.StoryView;
 
-public class StoryViewRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.StoryView>, IStoryViewRepo
+public class StoryViewRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.StoryView>, IStoryViewRepo
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly CIPlatformDbContext _dbContext;
 
-    public StoryViewRepo(ApplicationDbContext dbContext) : base(dbContext)
+    public StoryViewRepo(CIPlatformDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }

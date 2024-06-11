@@ -6,17 +6,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform_Backend_Repository.Mission;
 
-public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.Mission>, IMissionRepo
+public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Mission>, IMissionRepo
 {
 
-    private readonly ApplicationDbContext _dbContext;
+    private readonly CIPlatformDbContext _dbContext;
 
-    public MissionRepo(ApplicationDbContext dbContext) : base(dbContext)
+    public MissionRepo(CIPlatformDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<CI_Platform_Backend_DBEntity.DataModels.Mission> GetWithAllDataAsync(long userId, long missionId)
+    public async Task<CI_Platform_Backend_DBEntity.DbModels.Mission> GetWithAllDataAsync(long userId, long missionId)
     {
         return await _dbContext.Missions
             .Include(x=>x.MissionMedia)
@@ -30,7 +30,7 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.Mi
     public async Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long missionId, long userId)
     {
         List<RelatedMissionDTO> relatedMissionDTOs = new List<RelatedMissionDTO>();
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _dbContext.Missions.FirstOrDefaultAsync(x=>x.MissionId == missionId);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _dbContext.Missions.FirstOrDefaultAsync(x=>x.MissionId == missionId);
         if(mission == null || mission.MissionId == 0)
         {
             return relatedMissionDTOs;

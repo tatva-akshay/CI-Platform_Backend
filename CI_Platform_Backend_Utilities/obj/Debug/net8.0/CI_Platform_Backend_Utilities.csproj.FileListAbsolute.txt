@@ -16,3 +16,21 @@ d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Deb
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.pdb
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\ref\CI_Platform_Backend_Utilities.dll
 d:\Project\CI_Platform\CI_Platform_Backend\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.sourcelink.json
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Utilities.deps.json
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Utilities.dll
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Utilities.pdb
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.dll
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Presentation.dll
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_DBEntity.pdb
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\bin\Debug\net8.0\CI_Platform_Backend_Presentation.pdb
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.csproj.AssemblyReference.cache
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.AssemblyInfoInputs.cache
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.AssemblyInfo.cs
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.csproj.CoreCompileInputs.cache
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.sourcelink.json
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platf.83169ACC.Up2Date
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.dll
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\refint\CI_Platform_Backend_Utilities.dll
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\CI_Platform_Backend_Utilities.pdb
+D:\Project\CI_Platform\New folder\CI_Platform_Backend_Utilities\obj\Debug\net8.0\ref\CI_Platform_Backend_Utilities.dll

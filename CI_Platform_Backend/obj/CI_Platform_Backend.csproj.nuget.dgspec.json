@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend\\CI_Platform_Backend.csproj": {}
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\CI_Platform_Backend.csproj": {}
   },
   "projects": {
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend\\CI_Platform_Backend.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\CI_Platform_Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend\\CI_Platform_Backend.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\CI_Platform_Backend.csproj",
         "projectName": "CI_Platform_Backend",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend\\CI_Platform_Backend.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\CI_Platform_Backend.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj"
               },
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
               }
             }
           }
@@ -98,14 +98,14 @@
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
         "projectName": "CI_Platform_Backend_DBEntity",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -142,6 +142,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.6, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
             }
           },
           "imports": [
@@ -164,14 +168,14 @@
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
         "projectName": "CI_Platform_Backend_Presentation",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -188,8 +192,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
               }
             }
           }
@@ -234,14 +238,14 @@
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj",
         "projectName": "CI_Platform_Backend_Repository",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Repository\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -258,11 +262,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
               },
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
               }
             }
           }
@@ -301,14 +305,14 @@
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
         "projectName": "CI_Platform_Backend_Services",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Services\\CI_Platform_Backend_Services.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Services\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -325,11 +329,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Repository\\CI_Platform_Backend_Repository.csproj"
               },
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj"
               }
             }
           }
@@ -368,14 +372,14 @@
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
         "projectName": "CI_Platform_Backend_Utilities",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\CI_Platform_Backend_Utilities.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Utilities\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Utilities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -392,11 +396,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
               },
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj"
               }
             }
           }

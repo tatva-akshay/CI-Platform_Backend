@@ -1,4 +1,4 @@
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.Story;
 using CI_Platform_Backend_Repository.Mission;
 using CI_Platform_Backend_Repository.MissionApplication;
@@ -27,18 +27,18 @@ public class StoryService : IStoryService
 
     public async Task<bool> AddOrUpdateAsync(CreateStoryDTO createStoryDTO)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == createStoryDTO.MissionId);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == createStoryDTO.MissionId);
         
         if(mission == null || mission.MissionId == 0)
         {
             return false;
         }
 
-        CI_Platform_Backend_DBEntity.DataModels.Story story = await _storyRepo.GetAsync(x => x.UserId == createStoryDTO.UserId && x.MissionTitle.ToLower() == mission.MissionTitle.ToLower());
+        CI_Platform_Backend_DBEntity.DbModels.Story story = await _storyRepo.GetAsync(x => x.UserId == createStoryDTO.UserId && x.MissionTitle.ToLower() == mission.MissionTitle.ToLower());
         
         if(story == null || story.StoryId == 0)
         {
-            story = new CI_Platform_Backend_DBEntity.DataModels.Story()
+            story = new CI_Platform_Backend_DBEntity.DbModels.Story()
             {
                 StoryTitle = createStoryDTO.Title,
                 MissionTitle = mission.MissionTitle,
@@ -56,7 +56,7 @@ public class StoryService : IStoryService
                         image.CopyTo(item);
                         imageBytes = item.ToArray();
                     }
-                    story.StoryMedia.Add(new CI_Platform_Backend_DBEntity.DataModels.StoryMedium()
+                    story.StoryMedia.Add(new CI_Platform_Backend_DBEntity.DbModels.StoryMedium()
                     {
                         MissionId = createStoryDTO.MissionId,
                         Image = imageBytes,
@@ -79,7 +79,7 @@ public class StoryService : IStoryService
                     image.CopyTo(item);
                     imageBytes = item.ToArray();
                 }
-                story.StoryMedia.Add(new CI_Platform_Backend_DBEntity.DataModels.StoryMedium()
+                story.StoryMedia.Add(new CI_Platform_Backend_DBEntity.DbModels.StoryMedium()
                 {
                         MissionId = createStoryDTO.MissionId,
                     Image = imageBytes,
@@ -97,12 +97,12 @@ public class StoryService : IStoryService
 
     public async Task<List<StoryDTO>> GetAllAsync(long missionId)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == missionId);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == missionId);
         if(mission == null || mission.MissionId == 0)
         {
             return new List<StoryDTO>();
         }
-        List<CI_Platform_Backend_DBEntity.DataModels.Story> stories = await _storyRepo.GetStoriesAsync(mission.MissionTitle);
+        List<CI_Platform_Backend_DBEntity.DbModels.Story> stories = await _storyRepo.GetStoriesAsync(mission.MissionTitle);
         
         return stories.Select(x=> new StoryDTO()
         {
@@ -120,7 +120,7 @@ public class StoryService : IStoryService
 
     public async Task<StoryDetailsDTO> GetAsync(long storyId, long userId)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Story story = await _storyRepo.GetStoryAsync(storyId);
+        CI_Platform_Backend_DBEntity.DbModels.Story story = await _storyRepo.GetStoryAsync(storyId);
         if(story == null || story.StoryId == 0)
         {
             return new StoryDetailsDTO();
@@ -158,7 +158,7 @@ public class StoryService : IStoryService
             
         }
 
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x=>x.MissionTitle == story.MissionTitle);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x=>x.MissionTitle == story.MissionTitle);
         return new StoryDetailsDTO()
         {
             StoryId = story.StoryId,

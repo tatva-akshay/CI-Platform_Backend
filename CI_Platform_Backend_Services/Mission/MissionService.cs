@@ -1,5 +1,5 @@
 using System.Reflection.Metadata;
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.Mission;
 using CI_Platform_Backend_Presentation.DTO.Volunteer;
 using CI_Platform_Backend_Repository.City;
@@ -33,21 +33,21 @@ public class MissionService : IMissionService
 
     public async Task<bool> IsExistAsync(string title)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionTitle == title);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionTitle == title);
         
         return !(mission == null || mission.MissionId == 0);
     }
 
     public async Task<bool> IsExistAsync(long id)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == id);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == id);
         
         return !(mission == null || mission.MissionId == 0);
     }
 
     public async Task<bool> IsValidRegistraionCriteria(long missionId, long userId)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == missionId && x.MissionRegistrationDeadline >= DateOnly.FromDateTime(DateTime.Now) && x.TotalSeats > x.MissionApplications.Count(x=>x.IsApproved == true && x.DeletedAt == null));
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == missionId && x.MissionRegistrationDeadline >= DateOnly.FromDateTime(DateTime.Now) && x.TotalSeats > x.MissionApplications.Count(x=>x.IsApproved == true && x.DeletedAt == null));
         
         return !(mission == null || mission.MissionId == 0);
     }
@@ -65,7 +65,7 @@ public class MissionService : IMissionService
             return false;
         }
         
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = new CI_Platform_Backend_DBEntity.DataModels.Mission()
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = new CI_Platform_Backend_DBEntity.DbModels.Mission()
         {
             MissionTitle = createMissionDTO.Title,
             MissionShortDescription = createMissionDTO.Description.Length >= 256 ? createMissionDTO.Description.Substring(0, 256) : createMissionDTO.Description,
@@ -136,7 +136,7 @@ public class MissionService : IMissionService
     public async Task<List<MissionDTO>> GetAllAsync(long userId)
     {
         List<MissionDTO> missionDTOs = new List<MissionDTO>();
-        List<CI_Platform_Backend_DBEntity.DataModels.Mission> missions = await _missionRepo.GetAsync();
+        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetAsync();
 
         foreach (var mission in missions)
         {
@@ -175,7 +175,7 @@ public class MissionService : IMissionService
 
     public async Task<MissionDetailsDTO> GetAsync(long userId, long missionId)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetWithAllDataAsync(userId, missionId);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetWithAllDataAsync(userId, missionId);
         
         return new MissionDetailsDTO()
         {
@@ -230,7 +230,7 @@ public class MissionService : IMissionService
 
     public async Task<bool> ApproveAsync(long userId, long missionId)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission = await _missionRepo.GetAsync(x=>x.MissionId == missionId && x.TotalSeats > x.MissionApplications.Count(x=>x.IsApproved == true && x.DeletedAt == null));
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x=>x.MissionId == missionId && x.TotalSeats > x.MissionApplications.Count(x=>x.IsApproved == true && x.DeletedAt == null));
         
         if(mission == null || mission.MissionId == 0)
         {

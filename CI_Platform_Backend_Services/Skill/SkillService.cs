@@ -12,16 +12,16 @@ public class SkillService : ISkillService
         _skillRepo = skillRepo;
     }
 
-    public async Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DataModels.Skill skill)
+    public async Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DbModels.Skill skill)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Skill skillTemp = await _skillRepo.GetAsync(x => x.Skills == skill.Skills);
+        CI_Platform_Backend_DBEntity.DbModels.Skill skillTemp = await _skillRepo.GetAsync(x => x.Skills == skill.Skills);
         return (skillTemp == null || skillTemp.SkillId == 0) && await _skillRepo.AddAsync(skill);
     }
     
     public async Task<bool> UpdateAsync(long id, CreateSkillDTO skillDTO)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Skill skill = await _skillRepo.GetAsync(x => x.SkillId == id);
-        CI_Platform_Backend_DBEntity.DataModels.Skill skill2 = await _skillRepo.GetAsync(x => x.Skills.ToLower().Equals(skillDTO.Name.ToLower()));
+        CI_Platform_Backend_DBEntity.DbModels.Skill skill = await _skillRepo.GetAsync(x => x.SkillId == id);
+        CI_Platform_Backend_DBEntity.DbModels.Skill skill2 = await _skillRepo.GetAsync(x => x.Skills.ToLower().Equals(skillDTO.Name.ToLower()));
         
         if(skill == null || skill.SkillId == 0 || (skill2!=null && skill2.SkillId > 0))
         {
@@ -33,19 +33,19 @@ public class SkillService : ISkillService
         return await _skillRepo.UpdateAsync(skill);
     }
 
-    public async Task<List<CI_Platform_Backend_DBEntity.DataModels.Skill>> GetSkillsAsync()
+    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.Skill>> GetSkillsAsync()
     {
         return await _skillRepo.GetAsync();
     }
 
-    public async Task<CI_Platform_Backend_DBEntity.DataModels.Skill> GetSkillAsync(long id)
+    public async Task<CI_Platform_Backend_DBEntity.DbModels.Skill> GetSkillAsync(long id)
     {
         return await _skillRepo.GetAsync(x => x.SkillId == id);
     }
 
     public async Task<bool> DeleteAsync(long id)
     {
-        CI_Platform_Backend_DBEntity.DataModels.Skill skill = await _skillRepo.GetAsync(x => x.SkillId == id);
+        CI_Platform_Backend_DBEntity.DbModels.Skill skill = await _skillRepo.GetAsync(x => x.SkillId == id);
         if(skill == null || skill.SkillId == 0)
         {
             return false;

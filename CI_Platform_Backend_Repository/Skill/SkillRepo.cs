@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform_Backend_Repository.Skill;
 
-public class SkillRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.Skill>, ISkillRepo
+public class SkillRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Skill>, ISkillRepo
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly CIPlatformDbContext _dbContext;
 
-    public SkillRepo(ApplicationDbContext dbContext) : base(dbContext)
+    public SkillRepo(CIPlatformDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }

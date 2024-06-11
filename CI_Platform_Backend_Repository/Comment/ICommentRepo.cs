@@ -3,7 +3,7 @@ using CI_Platform_Backend_Repository.Repository;
 
 namespace CI_Platform_Backend_Repository.Comment;
 
-public interface ICommentRepo : IRepository<CI_Platform_Backend_DBEntity.DataModels.Comment>
+public interface ICommentRepo : IRepository<CI_Platform_Backend_DBEntity.DbModels.Comment>
 {
 
     Task<List<CommentDTO>> GetByMissionAsync(long missionId);

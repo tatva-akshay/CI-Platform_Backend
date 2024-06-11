@@ -1,5 +1,6 @@
 using AutoMapper;
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.ContactUs;
 using CI_Platform_Backend_Services.ContactUs;

@@ -27,16 +27,16 @@ public class CommentService : ICommentService
 
     public async Task<bool> AddAsync(CreateCommentDTO createCommentDTO)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == createCommentDTO.UserId);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == createCommentDTO.UserId);
         
         if(user == null || user.UserId == 0)
         {
             return false;
         }
         
-        CI_Platform_Backend_DBEntity.DataModels.Mission mission= await _missionRepo.GetAsync(x =>x.MissionId == createCommentDTO.MissionId);
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission= await _missionRepo.GetAsync(x =>x.MissionId == createCommentDTO.MissionId);
         
-        return mission != null && mission.MissionId != 0 && await _commentRepo.AddAsync(new CI_Platform_Backend_DBEntity.DataModels.Comment()
+        return mission != null && mission.MissionId != 0 && await _commentRepo.AddAsync(new CI_Platform_Backend_DBEntity.DbModels.Comment()
             {
                 UserId = createCommentDTO.UserId,
                 MissionId = createCommentDTO.MissionId,

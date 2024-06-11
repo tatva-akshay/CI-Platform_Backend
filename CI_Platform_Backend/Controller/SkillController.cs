@@ -1,5 +1,5 @@
 using AutoMapper;
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.CreateSkill;
 using CI_Platform_Backend_Presentation.DTO.Skill;
 using CI_Platform_Backend_Services.Skill;

@@ -1,5 +1,5 @@
 using AutoMapper;
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.Register;
 using CI_Platform_Backend_Presentation.DTO.CreateTheme;
 using CI_Platform_Backend_Presentation.DTO.Theme;
@@ -8,6 +8,7 @@ using CI_Platform_Backend_Presentation.DTO.Skill;
 using CI_Platform_Backend_Presentation.DTO.CMSPages;
 using CI_Platform_Backend_Presentation.DTO.User;
 using CI_Platform_Backend_Presentation.DTO.ContactUs;
+using CI_Platform_Backend_Presentation.DTO.Carousel;
 
 namespace CI_Platform_Backend_Utilities.AutoMapper;
 
@@ -72,6 +73,15 @@ public class MappingConfig : Profile
             .ForMember(src => src.PageDescription, opt => opt.MapFrom(dest => dest.Description))
             .ForMember(src => src.CmsId, opt => opt.MapFrom(dest => dest.CMSPageID))
             .ForMember(src => src.Slug, opt => opt.MapFrom(dest => dest.Slug));
+
+        CreateMap<LoginCarousel, CarouselDTO>()
+            .ForMember(dest => dest.CarouselId, opt => opt.MapFrom(src => src.CarouselId))
+            .ForMember(dest => dest.Head, opt => opt.MapFrom(src => src.CarouselHead))
+            .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.CarouselImage))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.CarouselText));
+        CreateMap<CreateCarouselDTO, LoginCarousel>()
+            .ForMember(dest => dest.CarouselHead, opt => opt.MapFrom(src => src.Header))
+            .ForMember(dest => dest.CarouselText, opt => opt.MapFrom(src => src.Description));
 
         CreateMap<User, UserDTO>().ReverseMap();
         CreateMap<ContactUss, ContactUsDTO>().ReverseMap();

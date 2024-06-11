@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CI_Platform_Backend_Repository.Comment;
 
-public class CommentRepo : Repository<CI_Platform_Backend_DBEntity.DataModels.Comment>, ICommentRepo
+public class CommentRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Comment>, ICommentRepo
 {
-    private readonly ApplicationDbContext _dbContext;
+    private readonly CIPlatformDbContext _dbContext;
 
-    public CommentRepo(ApplicationDbContext dbContext) : base(dbContext)
+    public CommentRepo(CIPlatformDbContext dbContext) : base(dbContext)
     {
         _dbContext = dbContext;
     }

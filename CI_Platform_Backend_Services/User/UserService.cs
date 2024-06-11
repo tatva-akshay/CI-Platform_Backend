@@ -1,4 +1,4 @@
-using CI_Platform_Backend_DBEntity.DataModels;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.User;
 using CI_Platform_Backend_Repository.Skill;
 using CI_Platform_Backend_Repository.User;
@@ -21,7 +21,7 @@ public class UserService : IUserService
 
     public async Task<UserDTO> GetAsync(long id)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
         
         if(user == null || user.UserId == 0)
         {
@@ -65,14 +65,14 @@ public class UserService : IUserService
 
     public async Task<bool> IsValidAsync(long id, string oldPassword)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
         
         return user != null && user.UserId > 0 && user.Password == oldPassword;
     }
 
     public async Task<bool> ChangePasswordAsync(long id, string password)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
         
         if(user != null && user.UserId > 0)
         {
@@ -85,7 +85,7 @@ public class UserService : IUserService
 
     public async Task<bool> ChangeSkillsAsync(long id, List<long> skillIds)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
         
         if(user != null && user.UserId > 0)
         {
@@ -98,7 +98,7 @@ public class UserService : IUserService
 
     public async Task<bool> UpdateAsync(long id, UpdateUserDTO updateUserDTO)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
         
         if(user != null && user.UserId > 0)
         {
@@ -143,7 +143,7 @@ public class UserService : IUserService
 
     public async Task<bool> UpdateImageAsync(long id, byte[] image)
     {
-        CI_Platform_Backend_DBEntity.DataModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
+        CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == id);
         
         if(user != null && user.UserId > 0)
         {

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {}
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {}
   },
   "projects": {
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
         "projectName": "CI_Platform_Backend_DBEntity",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,6 +48,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.6, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.4, )"
             }
           },
           "imports": [
@@ -70,14 +74,14 @@
         }
       }
     },
-    "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
+    "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
+        "projectUniqueName": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
         "projectName": "CI_Platform_Backend_Presentation",
-        "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
+        "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\CI_Platform_Backend_Presentation.csproj",
         "packagesPath": "C:\\Users\\pce123\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_Presentation\\obj\\",
+        "outputPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_Presentation\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pce123\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -94,8 +98,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
-                "projectPath": "D:\\Project\\CI_Platform\\CI_Platform_Backend\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
+              "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj": {
+                "projectPath": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend_DBEntity\\CI_Platform_Backend_DBEntity.csproj"
               }
             }
           }

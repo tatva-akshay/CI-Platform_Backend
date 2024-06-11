@@ -12,9 +12,9 @@ public class CMSPageService : ICMSPageService
         _cMSPrivacyPolicyRepo = cMSPrivacyPolicyRepo;
     }
 
-    public async Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy)
+    public async Task<bool> AddAsync(CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy)
     {
-        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicyTemp = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug == cmsPrivacyPolicy.Slug);
+        CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicyTemp = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug == cmsPrivacyPolicy.Slug);
     
         return cmsPrivacyPolicyTemp == null || cmsPrivacyPolicyTemp.CmsId == 0 ? 
             await _cMSPrivacyPolicyRepo.AddAsync(cmsPrivacyPolicy) : 
@@ -23,8 +23,8 @@ public class CMSPageService : ICMSPageService
     
     public async Task<bool> UpdateAsync(long id, CreateCMSPageDTO cMSPageDTO)
     {
-        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
-        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy2 = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug == cMSPageDTO.Slug);
+        CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+        CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy2 = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug == cMSPageDTO.Slug);
         
         if(cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0 || (cmsPrivacyPolicy2 != null && cmsPrivacyPolicy2.CmsId > 0))
         {
@@ -39,37 +39,37 @@ public class CMSPageService : ICMSPageService
 
     public async Task<bool> IsExistsAsync(long id)
     {
-        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+        CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
         
         return !(cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0);
     }
 
     public async Task<bool> IsExistsAsync(long id, string slug)
     {
-        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug.ToLower() == slug.ToLower());
+        CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug.ToLower() == slug.ToLower());
         
         return (cmsPrivacyPolicy == null || cmsPrivacyPolicy.CmsId == 0 || cmsPrivacyPolicy.CmsId == id);
     }
 
 
-    public async Task<List<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy>> GetCMSPagesAsync()
+    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy>> GetCMSPagesAsync()
     {
         return await _cMSPrivacyPolicyRepo.GetAsync();
     }
 
-    public async Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(long id)
+    public async Task<CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy> GetCMSPageAsync(long id)
     {
         return await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
     }
 
-    public async Task<CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy> GetCMSPageAsync(string slug)
+    public async Task<CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy> GetCMSPageAsync(string slug)
     {
         return await _cMSPrivacyPolicyRepo.GetAsync(x => x.Slug == slug);
     }
 
     public async Task<bool> DeleteAsync(long id)
     {
-        CI_Platform_Backend_DBEntity.DataModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
+        CI_Platform_Backend_DBEntity.DbModels.CmsPrivacyPolicy cmsPrivacyPolicy = await _cMSPrivacyPolicyRepo.GetAsync(x => x.CmsId == id);
         
         return cmsPrivacyPolicy != null && cmsPrivacyPolicy.CmsId != 0 && await _cMSPrivacyPolicyRepo.DeleteAsync(cmsPrivacyPolicy);
     }
