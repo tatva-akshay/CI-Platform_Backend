@@ -1,5 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 using CI_Platform_Backend_DBEntity.Context;
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.Mission;
 using CI_Platform_Backend_Repository.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,12 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
             .Include(x=>x.Volunteers)
             .ThenInclude(x=>x.User)
             .FirstOrDefaultAsync(x=>x.MissionId == missionId);
+    }
+
+    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.Mission>> GetMissionsAsync()
+    {
+        return await _dbContext.Missions.Include(x => x.MissionMedia).Include(x => x.Volunteers).Include(x=>x.MissionFavs).Include(x=>x.MissionApplications).ToListAsync();
+        
     }
 
     public async Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long missionId, long userId)

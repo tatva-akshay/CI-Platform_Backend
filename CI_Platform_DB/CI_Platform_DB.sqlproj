@@ -79,7 +79,7 @@
     <Build Include="dbo\Tables\contact_uss.sql" />
     <Build Include="dbo\Tables\comments.sql" />
     <Build Include="dbo\Tables\cms_privacy_policy.sql" />
-    <Build Include="dbo\Tables\city.sql" />
     <Build Include="dbo\Tables\admin.sql" />
+    <Build Include="dbo\Tables\city.sql" />
   </ItemGroup>
 </Project>

@@ -1,3 +1,4 @@
+using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.Mission;
 using CI_Platform_Backend_Services.Mission;
 using CI_Platform_Backend_Services.User;
@@ -12,6 +13,7 @@ public class MissionController : ControllerBase
 {
     private readonly IMissionService _missionService;
     private readonly IUserService _userService;
+    private readonly APIResponse _aPIResponse = new APIResponse();
 
     public MissionController(IMissionService missionService, IUserService userService)
     {
@@ -32,9 +34,16 @@ public class MissionController : ControllerBase
     [Route("")]
     public async Task<IActionResult> GetAllAsync(long userId)
     {
-        return await _userService.IsExistAsync(userId) ?
-            Ok(await _missionService.GetAllAsync(userId)) :
-            BadRequest();
+        if(await _userService.IsExistAsync(userId))
+        {
+            _aPIResponse.IsSuccess = true;
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+            _aPIResponse.Result = await _missionService.GetAllAsync(userId);
+            return Ok(_aPIResponse);
+        }
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["User does not Exists"];
+        return BadRequest(_aPIResponse);
     }
 
     [HttpGet]
@@ -78,7 +87,7 @@ public class MissionController : ControllerBase
 
     [HttpPost]
     [Route("approve")]
-    // [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<ActionResult> ApproveAsync(long missionId, long userId)
     {
         return await _missionService.IsExistAsync(missionId) ?

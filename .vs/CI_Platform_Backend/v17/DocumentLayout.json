@@ -1,7 +1,52 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Project\\CI_Platform\\New folder\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\missioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\missioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\timesheetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\timesheetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\themecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\themecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\storycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\storycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\skillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\skillcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\commentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\contactuscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|d:\\project\\ci_platform\\new folder\\ci_platform_backend\\controller\\cmspagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EF8AC20F-98A7-4BB8-A9C5-954F94631C96}|CI_Platform_Backend\\CI_Platform_Backend.csproj|solutionrelative:ci_platform_backend\\controller\\cmspagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +63,149 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\UserController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\UserController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\UserController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\UserController.cs",
+              "ViewState": "AQIAAGAAAAAAAAAAAAAmwFEAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:16:41.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TimesheetController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\TimesheetController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\TimesheetController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\TimesheetController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\TimesheetController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAgwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:16:10.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ThemeController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\ThemeController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\ThemeController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\ThemeController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\ThemeController.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:16:03.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "StoryController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\StoryController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\StoryController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\StoryController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\StoryController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAowBUAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:15:35.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SkillController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\SkillController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\SkillController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\SkillController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\SkillController.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:15:27.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CommentController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\CommentController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\CommentController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\CommentController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\CommentController.cs",
+              "ViewState": "AQIAACEAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:14:09.333Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ContactUsController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\ContactUsController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\ContactUsController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\ContactUsController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\ContactUsController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:14:06.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CMSPagesController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\CMSPagesController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\CMSPagesController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\CMSPagesController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\CMSPagesController.cs",
+              "ViewState": "AQIAAHYAAAAAAAAAAAAcwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:13:35.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Program.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Program.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Program.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Program.cs",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAIQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:13:23.119Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\AuthController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\AuthController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\AuthController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\AuthController.cs",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAswDAAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T10:11:55.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MissionController.cs",
+              "DocumentMoniker": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\MissionController.cs",
+              "RelativeDocumentMoniker": "CI_Platform_Backend\\Controller\\MissionController.cs",
+              "ToolTip": "D:\\Project\\CI_Platform\\New folder\\CI_Platform_Backend\\Controller\\MissionController.cs",
+              "RelativeToolTip": "CI_Platform_Backend\\Controller\\MissionController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-12T09:59:59.456Z",
+              "EditorCaption": ""
             }
           ]
         }

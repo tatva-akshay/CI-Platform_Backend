@@ -136,7 +136,7 @@ public class MissionService : IMissionService
     public async Task<List<MissionDTO>> GetAllAsync(long userId)
     {
         List<MissionDTO> missionDTOs = new List<MissionDTO>();
-        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetAsync();
+        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetMissionsAsync();
 
         foreach (var mission in missions)
         {
@@ -150,12 +150,12 @@ public class MissionService : IMissionService
                 EndDate = mission.MissionEndDate,
                 RegistrationDeadline = mission.MissionRegistrationDeadline,
                 TotalSeats = mission.TotalSeats,
-                SeatsLeft = 0,
+                SeatsLeft = mission.TotalSeats != null ? mission.TotalSeats.Value - mission.Volunteers.Count(x=>x.DeletedAt == null) : 0,
                 Goal = "",
                 GoalStatus = 1,
                 OrganisationName = mission.MissionOrganisationName,
                 Ratings = mission.MissionRating,
-                // Thumbnail = mission.MissionThumbnail,
+                Thumbnail = mission.MissionMedia.FirstOrDefault(x => x.Image != null).Image,
                 Country = mission.Country,
                 City = mission.City,
                 // CountryId = mission.Country,
@@ -165,8 +165,8 @@ public class MissionService : IMissionService
                 missionUserDTO = new MissionUserDTO()
                 {
                     UserId = userId,
-                    IsApplied = false,
-                    IsFavourite = false,
+                    IsApplied = mission.MissionApplications.Any(x=>x.UserId == userId),
+                    IsFavourite = mission.MissionFavs.Any(x=>x.UserId == userId),
                 }
             });
         }
