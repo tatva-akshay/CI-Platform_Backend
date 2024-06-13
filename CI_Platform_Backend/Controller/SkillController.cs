@@ -1,5 +1,6 @@
 using AutoMapper;
 using CI_Platform_Backend_DBEntity.DbModels;
+using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.CreateSkill;
 using CI_Platform_Backend_Presentation.DTO.Skill;
 using CI_Platform_Backend_Services.Skill;
@@ -13,6 +14,7 @@ public class SkillController : ControllerBase
 {
     private readonly ISkillService _skillService;
     private readonly IMapper _mapper;
+    private APIResponse _aPIResponse = new APIResponse();
 
     public SkillController(ISkillService skillService, IMapper mapper)
     {
@@ -59,7 +61,10 @@ public class SkillController : ControllerBase
     [Route("")]
     public async Task<ActionResult> GetAllAsync()
     {
-        return Ok(_mapper.Map<List<SkillDTO>>(await _skillService.GetSkillsAsync()));
+        _aPIResponse.IsSuccess = true;
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+        _aPIResponse.Result = _mapper.Map<List<SkillDTO>>(await _skillService.GetSkillsAsync());
+        return Ok(_aPIResponse);
     }
 
     // Created: 5 June - Dhruvil Bhojani

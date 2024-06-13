@@ -40,7 +40,7 @@ public class MissionDTO
 
     public int Status { get; set; }
 
-    public Dictionary<long, string> Skills { get; set; }
+    public List<string> Skills { get; set; } = new List<string>();
 
     public MissionUserDTO missionUserDTO { get; set; }
 

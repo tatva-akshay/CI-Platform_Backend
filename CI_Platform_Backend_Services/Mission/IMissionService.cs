@@ -12,7 +12,9 @@ public interface IMissionService
 
     Task<bool> AddAsync(long userId, CreateMissionDTO createMissionDTO);
 
-    Task<List<MissionDTO>> GetAllAsync(long userId);
+    Task<List<MissionDTO>> GetAllAsync(long userId, List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize);
+
+    Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities);
 
     Task<MissionDetailsDTO> GetAsync(long userId, long missionId);
 

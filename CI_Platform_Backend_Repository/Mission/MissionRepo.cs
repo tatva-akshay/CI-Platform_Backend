@@ -28,9 +28,33 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
             .FirstOrDefaultAsync(x=>x.MissionId == missionId);
     }
 
-    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.Mission>> GetMissionsAsync()
+    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.Mission>> GetMissionsAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize)
     {
-        return await _dbContext.Missions.Include(x => x.MissionMedia).Include(x => x.Volunteers).Include(x=>x.MissionFavs).Include(x=>x.MissionApplications).ToListAsync();
+        page = page == 0 ? 1 : page;
+        pageSize = pageSize == 0 ? 10 : pageSize;
+        return await _dbContext.Missions.Include(x => x.MissionMedia).Include(x => x.Volunteers).Include(x=>x.MissionFavs).Include(x=>x.MissionApplications)
+            .Where(x=> 
+                (themes.Count == 0 || themes.Contains(x.MissionTheme)) &&
+                //(skills.Count == 0 || skills.Any(skill=> )) &&
+                (countries.Count == 0 || countries.Contains(x.Country)) &&
+                (cities.Count == 0 || cities.Contains(x.City))
+            )
+            .Skip((page-1)*pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+        
+    }
+    
+    public async Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities)
+    {        
+        return await _dbContext.Missions.Include(x => x.MissionMedia).Include(x => x.Volunteers).Include(x=>x.MissionFavs).Include(x=>x.MissionApplications)
+            .Where(x=> 
+                (themes.Count == 0 || themes.Contains(x.MissionTheme)) &&
+                //(skills.Count == 0 || skills.Any(skill=> )) &&
+                (countries.Count == 0 || countries.Contains(x.Country)) &&
+                (cities.Count == 0 || cities.Contains(x.City))
+            )
+            .CountAsync();
         
     }
 

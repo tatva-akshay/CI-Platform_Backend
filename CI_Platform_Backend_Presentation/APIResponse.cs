@@ -12,5 +12,11 @@ public class APIResponse
 
     public string? Token { get; set; }
 
+    public int Page {  get; set; }
+
+    public int PageSize { get; set; }
+
+    public int RowCount { get; set; }
+
     public string[]? ErrorMessages { get; set; }
 }

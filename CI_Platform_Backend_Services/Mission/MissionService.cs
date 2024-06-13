@@ -133,10 +133,10 @@ public class MissionService : IMissionService
         return true;
     }
 
-    public async Task<List<MissionDTO>> GetAllAsync(long userId)
+    public async Task<List<MissionDTO>> GetAllAsync(long userId, List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize)
     {
         List<MissionDTO> missionDTOs = new List<MissionDTO>();
-        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetMissionsAsync();
+        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetMissionsAsync(themes, skills, countries, cities, page, pageSize);
 
         foreach (var mission in missions)
         {
@@ -161,7 +161,7 @@ public class MissionService : IMissionService
                 // CountryId = mission.Country,
                 // CityId = mission.City,
                 Status = mission.Status,
-                // Skills = mission.Skills,
+                Skills = mission.MissionSkills?.Split(",").ToList(),
                 missionUserDTO = new MissionUserDTO()
                 {
                     UserId = userId,
@@ -171,6 +171,11 @@ public class MissionService : IMissionService
             });
         }
         return missionDTOs;
+    }
+
+    public async Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities)
+    {
+        return await _missionRepo.GetMissionsCountAsync(themes, skills, countries, cities);
     }
 
     public async Task<MissionDetailsDTO> GetAsync(long userId, long missionId)
@@ -197,7 +202,7 @@ public class MissionService : IMissionService
             Description = mission.MissionDescription,
             OrganisationDetails = mission.MissionOrganisationDetail,
             Documents = mission.MissionMedia != null ? mission.MissionMedia.Where(x=>x.Document != null).Select(x=>x.Document).ToArray() : null,
-            Skills = mission.MissionSkills?.Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList(),
+            Skills = mission.MissionSkills?.Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>(),
             Availability = mission.MissionAvailability,
             RatingCount = mission.MissionRatingCount!= null? mission.MissionRatingCount.Value : 0,
             RecentVolunteers = mission.Volunteers != null ? mission.Comments.Select(x=>new RecentVolunteerDTO()
