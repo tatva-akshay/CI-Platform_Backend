@@ -35,7 +35,7 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
         return await _dbContext.Missions.Include(x => x.MissionMedia).Include(x => x.Volunteers).Include(x=>x.MissionFavs).Include(x=>x.MissionApplications)
             .Where(x=> 
                 (themes.Count == 0 || themes.Contains(x.MissionTheme)) &&
-                (skills.Count == 0 || (x.MissionSkills != null &&  skills.Any(skill => x.MissionSkills.Contains(skill)))) &&
+                //(skills.Count == 0 || (x.MissionSkills != null &&  skills.Any(skill => x.MissionSkills.Contains(skill)))) &&
                 (countries.Count == 0 || countries.Contains(x.Country)) &&
                 (cities.Count == 0 || cities.Contains(x.City))
             )
