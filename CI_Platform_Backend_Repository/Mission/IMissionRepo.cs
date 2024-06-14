@@ -11,7 +11,7 @@ public interface IMissionRepo : IRepository<CI_Platform_Backend_DBEntity.DbModel
 
     Task<List<RelatedMissionDTO>> GetRelatedMissionsAsync(long missionId, long userId);
 
-    Task<List<CI_Platform_Backend_DBEntity.DbModels.Mission>> GetMissionsAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize);
+    Task<List<CI_Platform_Backend_DBEntity.DbModels.Mission>> GetMissionsAsync(long userId, List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize, string search, string orderBy);
 
-    Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities);
+    Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities, string search);
 }

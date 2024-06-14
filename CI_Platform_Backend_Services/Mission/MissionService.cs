@@ -133,10 +133,10 @@ public class MissionService : IMissionService
         return true;
     }
 
-    public async Task<List<MissionDTO>> GetAllAsync(long userId, List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize)
+    public async Task<List<MissionDTO>> GetAllAsync(long userId, List<string> themes, List<string> skills, List<string> countries, List<string> cities, int page, int pageSize, string search, string orderBy)
     {
         List<MissionDTO> missionDTOs = new List<MissionDTO>();
-        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetMissionsAsync(themes, skills, countries, cities, page, pageSize);
+        List<CI_Platform_Backend_DBEntity.DbModels.Mission> missions = await _missionRepo.GetMissionsAsync(userId, themes, skills, countries, cities, page, pageSize, search, orderBy);
 
         foreach (var mission in missions)
         {
@@ -173,9 +173,9 @@ public class MissionService : IMissionService
         return missionDTOs;
     }
 
-    public async Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities)
+    public async Task<int> GetMissionsCountAsync(List<string> themes, List<string> skills, List<string> countries, List<string> cities, string search)
     {
-        return await _missionRepo.GetMissionsCountAsync(themes, skills, countries, cities);
+        return await _missionRepo.GetMissionsCountAsync(themes, skills, countries, cities, search);
     }
 
     public async Task<MissionDetailsDTO> GetAsync(long userId, long missionId)
@@ -205,12 +205,11 @@ public class MissionService : IMissionService
             Skills = mission.MissionSkills?.Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>(),
             Availability = mission.MissionAvailability,
             RatingCount = mission.MissionRatingCount!= null? mission.MissionRatingCount.Value : 0,
-            RecentVolunteers = mission.Volunteers != null ? mission.Comments.Select(x=>new RecentVolunteerDTO()
+            RecentVolunteers = mission.Volunteers != null ? mission.Volunteers.Select(x=>new RecentVolunteerDTO()
                 {
                     UserId = x.UserId,
-                    UserName = x.UserName,
+                    UserName = x.User.FirstName + " " + x.User.LastName,
                     ProfileImage = x.User.Avatar,
-                    CreatedAt = x.CreatedAt,
                 }).ToList() : null,
             VolunteerCount = mission.Volunteers != null ? mission.Volunteers.Count : 0,
             IsFavourite = mission.MissionFavs.Count != 0,

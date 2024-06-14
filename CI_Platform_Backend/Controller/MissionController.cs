@@ -1,3 +1,4 @@
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation;
 using CI_Platform_Backend_Presentation.DTO.Mission;
 using CI_Platform_Backend_Services.Mission;
@@ -32,21 +33,21 @@ public class MissionController : ControllerBase
 
     [HttpGet]
     [Route("")]
-    public async Task<IActionResult> GetAllAsync(long userId, [FromQuery] List<string> themes, [FromQuery] List<string> skills, [FromQuery] List<string> countries, [FromQuery] List<string> cities, [FromQuery] int page, [FromQuery] int pageSize)
+    public async Task<IActionResult> GetAllAsync(long userId, [FromQuery] List<string> themes, [FromQuery] List<string> skills, [FromQuery] List<string> countries, [FromQuery] List<string> cities, [FromQuery] int page, [FromQuery] int pageSize, [FromQuery] string? search, [FromQuery] string? orderBy)
       {
         if(await _userService.IsExistAsync(userId))
         {
             _aPIResponse.IsSuccess = true;
             _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
-            _aPIResponse.Result = await _missionService.GetAllAsync(userId, themes, skills, countries, cities, page, pageSize);
-            _aPIResponse.RowCount = await _missionService.GetMissionsCountAsync(themes, skills, countries, cities);
+            _aPIResponse.Result = await _missionService.GetAllAsync(userId, themes, skills, countries, cities, page, pageSize, search ?? "", orderBy);
+            _aPIResponse.RowCount = await _missionService.GetMissionsCountAsync(themes, skills, countries, cities, search ?? "");
             _aPIResponse.Page = page == 0 ? 1 : page;
             _aPIResponse.PageSize = pageSize == 0 ? 10 : pageSize;
             return Ok(_aPIResponse);
         }
         _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
         _aPIResponse.ErrorMessages = ["User does not Exists"];
-        return BadRequest(_aPIResponse);
+        return Unauthorized(_aPIResponse);
     }
 
     [HttpGet]
@@ -55,11 +56,20 @@ public class MissionController : ControllerBase
     {
         if(await _userService.IsExistAsync(userId))
         {
-            return await _missionService.IsExistAsync(missionId) ?
-                Ok(await _missionService.GetAsync(userId, missionId)) :
-                NotFound();
+            if (await _missionService.IsExistAsync(missionId))
+            {
+                _aPIResponse.IsSuccess = true;
+                _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+                _aPIResponse.Result = await _missionService.GetAsync(userId, missionId);
+                return Ok(_aPIResponse);
+            }
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+            _aPIResponse.ErrorMessages = ["Mission does not Exists"];
+            return NotFound(_aPIResponse);
         }
-        return Unauthorized();
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["User does not Exists"];
+        return Unauthorized(_aPIResponse);
     }
 
     [HttpGet]
@@ -68,11 +78,20 @@ public class MissionController : ControllerBase
     {
         if(await _userService.IsExistAsync(userId))
         {
-            return await _missionService.IsExistAsync(missionId) ?
-                Ok(await _missionService.RelatedMissionsAsync(userId, missionId)) :
-                NotFound();
+            if (await _missionService.IsExistAsync(missionId))
+            {
+                _aPIResponse.IsSuccess = true;
+                _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+                _aPIResponse.Result = await _missionService.RelatedMissionsAsync(userId, missionId);
+                return Ok(_aPIResponse);
+            }
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+            _aPIResponse.ErrorMessages = ["Mission does not Exists"];
+            return NotFound(_aPIResponse);
         }
-        return Unauthorized();
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["User does not Exists"];
+        return Unauthorized(_aPIResponse);
     }
 
     [HttpPost]
