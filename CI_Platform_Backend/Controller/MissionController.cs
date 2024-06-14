@@ -40,7 +40,7 @@ public class MissionController : ControllerBase
             _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
             _aPIResponse.Result = await _missionService.GetAllAsync(userId, themes, skills, countries, cities, page, pageSize);
             _aPIResponse.RowCount = await _missionService.GetMissionsCountAsync(themes, skills, countries, cities);
-            //_aPIResponse.Page = page == 0 ? 1 : page;
+            _aPIResponse.Page = page == 0 ? 1 : page;
             _aPIResponse.PageSize = pageSize == 0 ? 10 : pageSize;
             return Ok(_aPIResponse);
         }
