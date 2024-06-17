@@ -95,27 +95,28 @@ public class StoryService : IStoryService
         return !(missionApplication == null || missionApplication.ApplicationId == 0);
     }
 
-    public async Task<List<StoryDTO>> GetAllAsync(long missionId)
+    public async Task<List<StoryDTO>> GetAllAsync()
     {
-        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x => x.MissionId == missionId);
-        if(mission == null || mission.MissionId == 0)
-        {
-            return new List<StoryDTO>();
-        }
-        List<CI_Platform_Backend_DBEntity.DbModels.Story> stories = await _storyRepo.GetStoriesAsync(mission.MissionTitle);
         
-        return stories.Select(x=> new StoryDTO()
+        List<CI_Platform_Backend_DBEntity.DbModels.Story> stories = await _storyRepo.GetStoriesAsync();
+        List<StoryDTO> storiesDTO = new List<StoryDTO>();
+        foreach (var item in stories)
         {
-            StoryId = x.StoryId,
-            Thumbnail = x.StoryMedia.FirstOrDefault()?.Image,
-            Theme = mission.MissionTheme,
-            Title = x.StoryTitle,
-            Description = x.StoryDescription,
-            UserId = x.UserId,
-            UserName = x.User.FirstName + " " + x.User.LastName,
-            UserProfile = x.User.Avatar,
-            CreatedAt = x.CreatedAt,
-        }).ToList();
+            string theme = await _missionRepo.GetThemeAsync(item.MissionTitle);
+            storiesDTO.Add(new StoryDTO()
+            {
+                StoryId = item.StoryId,
+                Thumbnail = item.StoryMedia.FirstOrDefault()?.Image,
+                Theme = theme,
+                Title = item.StoryTitle,
+                Description = item.StoryDescription,
+                UserId = item.UserId,
+                UserName = item.User.FirstName + " " + item.User.LastName,
+                UserProfile = item.User.Avatar,
+                CreatedAt = item.CreatedAt,
+            });
+        }
+        return storiesDTO;
     }
 
     public async Task<StoryDetailsDTO> GetAsync(long storyId, long userId)
@@ -126,7 +127,9 @@ public class StoryService : IStoryService
             return new StoryDetailsDTO();
         }
 
+
         StoryView storyView = await _storyViewRepo.GetAsync(x=>x.StoryId == storyId);
+        bool isNewView = false;
         if(userId > 0 && await _userRepo.IsExistAsync(userId))
         {
             if(storyView == null || storyView.ViewId == 0)
@@ -136,6 +139,7 @@ public class StoryService : IStoryService
                     StoryId = storyId,
                     UserIds = userId.ToString()
                 });
+                isNewView = true;
             }
             else
             {
@@ -144,6 +148,7 @@ public class StoryService : IStoryService
                 {
                     storyView.UserIds = userId.ToString();
                     await _storyViewRepo.UpdateAsync(storyView);
+                    isNewView = true;
                 }
                 else
                 {
@@ -152,10 +157,10 @@ public class StoryService : IStoryService
                         userIds.Add(userId.ToString());
                         storyView.UserIds = String.Join(", ", userIds);
                         await _storyViewRepo.UpdateAsync(storyView);
+                        isNewView = true;
                     }
                 }
-            }
-            
+            }            
         }
 
         CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _missionRepo.GetAsync(x=>x.MissionTitle == story.MissionTitle);
@@ -163,7 +168,7 @@ public class StoryService : IStoryService
         {
             StoryId = story.StoryId,
             Title = story.StoryTitle,
-            Views = storyView?.UserIds?.Split(", ").Count(),
+            Views = isNewView ? storyView?.UserIds?.Split(",").Count() + 1 : storyView?.UserIds?.Split(",").Count(),
             Images = story.StoryMedia.Select(x=>x.Image).ToArray(),
             UserName = story.User.FirstName + " " + story.User.LastName,
             UserCity = story.User?.City?.City1,

@@ -1,6 +1,8 @@
 using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.Carousel;
 using CI_Platform_Backend_Presentation.DTO.Login;
+using CI_Platform_Backend_Repository.City;
+using CI_Platform_Backend_Repository.Country;
 using CI_Platform_Backend_Repository.LoginCarousel;
 using CI_Platform_Backend_Repository.UserRepo;
 
@@ -9,12 +11,16 @@ namespace CI_Platform_Backend_Services.Auth;
 public class AuthService : IAuthService
 {
     private readonly IUserRepo _userRepo;
+    private readonly ICountryRepo _countryRepo;
+    private readonly ICityRepo _cityRepo;
     private readonly ILoginCarouselRepo _loginCarouselRepo;
 
-    public AuthService(IUserRepo userRepo, ILoginCarouselRepo loginCarouselRepo)
+    public AuthService(IUserRepo userRepo, ILoginCarouselRepo loginCarouselRepo, ICountryRepo countryRepo, ICityRepo cityRepo)
     {
         _userRepo = userRepo;
         _loginCarouselRepo = loginCarouselRepo;
+        _countryRepo = countryRepo;
+        _cityRepo = cityRepo;
     }
 
     public async Task<string> IsValidUserAsync(LoginDTO loginDTO)
@@ -61,6 +67,18 @@ public class AuthService : IAuthService
             CarouselText = loginCarousel.CarouselText,
             CarouselImage = loginCarousel.CarouselImage,
         });
+    }
+
+    public async Task<List<string>> GetCountriesAsync()
+    {
+        List<Country> countries = await _countryRepo.GetAsync();
+        return countries.Select(x=>x.Country1).ToList();
+    }
+    
+    public async Task<List<string>> GetCitiesAsync(long countryId)
+    {
+        List<City> cities = await _cityRepo.GetAsync();
+        return cities.Where(x=>countryId == 0 || x.CountryId == countryId).Select(x=>x.City1).ToList();
     }
 
 

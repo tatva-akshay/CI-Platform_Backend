@@ -18,4 +18,8 @@ public interface IAuthService
 
     Task<bool> AddCarouselAsync(LoginCarousel loginCarousel);
 
+    Task<List<string>> GetCountriesAsync();
+
+    Task<List<string>> GetCitiesAsync(long countryId);
+
 }

@@ -24,11 +24,23 @@ public class MissionController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<IActionResult> CreateAsync(long userId, CreateMissionDTO createMissionDTO)
+    public async Task<IActionResult> CreateAsync([FromQuery] long userId, [FromBody] CreateMissionDTO createMissionDTO)
     {
-        return !await _missionService.IsExistAsync(createMissionDTO.Title) && await _missionService.AddAsync(userId, createMissionDTO) ?
-            Ok() :
-            BadRequest();
+        if (!await _missionService.IsExistAsync(createMissionDTO.Title))
+        {
+            if (await _missionService.AddAsync(userId, createMissionDTO))
+            {
+                _aPIResponse.IsSuccess = true;
+                _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+                return Ok(_aPIResponse);
+            }
+            _aPIResponse.ErrorMessages = ["Something went wrong"];
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
+            return BadRequest(_aPIResponse);
+        }
+        _aPIResponse.ErrorMessages = ["Mission with same Title already exists"];
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.BadRequest;
+        return BadRequest(_aPIResponse);
     }
 
     [HttpGet]

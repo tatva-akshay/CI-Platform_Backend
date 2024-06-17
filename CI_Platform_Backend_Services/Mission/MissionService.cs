@@ -54,24 +54,24 @@ public class MissionService : IMissionService
 
     public async Task<bool> AddAsync(long userId, CreateMissionDTO createMissionDTO)
     {
-        string countryName = await _countryRepo.GetNameAsync(createMissionDTO.CountryId);
-        string cityName = await _cityRepo.GetNameAsync(createMissionDTO.CityId);
-        string themeName = await _themeRepo.GetNameAsync(createMissionDTO.ThemeId);
-        string skillNames = String.Join(", ", await _skillRepo.GetAsync(createMissionDTO.SkillIds));
-        string availability = Enum.GetName(typeof(AVAILABILITY), createMissionDTO.Availability);
+        //string countryName = await _countryRepo.GetNameAsync(createMissionDTO.CountryId);
+        //string cityName = await _cityRepo.GetNameAsync(createMissionDTO.CityId);
+        //string themeName = await _themeRepo.GetNameAsync(createMissionDTO.ThemeId);
+        //string skillNames = String.Join(", ", await _skillRepo.GetAsync(createMissionDTO.SkillIds));
+        //string availability = Enum.GetName(typeof(AVAILABILITY), createMissionDTO.Availability);
 
-        if(string.IsNullOrEmpty(countryName) || string.IsNullOrEmpty(cityName) || string.IsNullOrEmpty(themeName) || string.IsNullOrEmpty(availability))
-        {
-            return false;
-        }
-        
+        //if(string.IsNullOrEmpty(countryName) || string.IsNullOrEmpty(cityName) || string.IsNullOrEmpty(themeName) || string.IsNullOrEmpty(availability))
+        //{
+        //    return false;
+        //}
+
         CI_Platform_Backend_DBEntity.DbModels.Mission mission = new CI_Platform_Backend_DBEntity.DbModels.Mission()
         {
             MissionTitle = createMissionDTO.Title,
             MissionShortDescription = createMissionDTO.Description.Length >= 256 ? createMissionDTO.Description.Substring(0, 256) : createMissionDTO.Description,
             MissionDescription = createMissionDTO.Description,
-            Country = countryName,
-            City = cityName,
+            Country = createMissionDTO.Country,
+            City = createMissionDTO.City,
             MissionOrganisationName = createMissionDTO.OrganisationName,
             MissionOrganisationDetail = createMissionDTO.OrganisationDetails,
             MissionStartDate = createMissionDTO.StartDate,
@@ -79,13 +79,13 @@ public class MissionService : IMissionService
             MissionType = createMissionDTO.MissionType == 1 ? "Time" : "Goal",
             TotalSeats = createMissionDTO.TotalSeats,
             MissionRegistrationDeadline = createMissionDTO.RegistrationDeadline,
-            MissionTheme = themeName,
-            MissionSkills = skillNames,
-            MissionAvailability = availability,
+            MissionTheme = createMissionDTO.Theme,
+            MissionSkills = String.Join(", ", createMissionDTO.Skills),
+            MissionAvailability = createMissionDTO.Availability,
             Status = 1
         };
 
-        if(createMissionDTO.MissionType == 2 && !string.IsNullOrEmpty(createMissionDTO.Goal))
+        if (createMissionDTO.MissionType == 2 && !string.IsNullOrEmpty(createMissionDTO.Goal))
         {
             mission.MissionGoals = [
                 new MissionGoal()
@@ -96,40 +96,40 @@ public class MissionService : IMissionService
             ];
         }
 
-        if(createMissionDTO.Images?.Count > 0)
-        {
-            createMissionDTO.Images.ForEach(image => 
-            {
-                byte[] imageBytes;
-                using (var item = new MemoryStream())
-                {
-                    image.CopyTo(item);
-                    imageBytes = item.ToArray();
-                }
-                mission.MissionMedia.Add(new MissionMedium()
-                {
-                    Image = imageBytes,
-                });
-            });
-        }
+        //if (createMissionDTO.Images?.Count() > 0)
+        //{
+        //    createMissionDTO.Images.ToList().ForEach(image =>
+        //    {
+        //        //byte[] imageBytes;
+        //        //using (var item = new MemoryStream())
+        //        //{
+        //        //    image.CopyTo(item);
+        //        //    imageBytes = item.ToArray();
+        //        //}
+        //        mission.MissionMedia.Add(new MissionMedium()
+        //        {
+        //            Image = image,
+        //        });
+        //    });
+        //}
 
-        if(createMissionDTO.Documents?.Count > 0)
-        {
-            createMissionDTO.Documents.ForEach(document => 
-            {
-                byte[] documentBytes;
-                using (var item = new MemoryStream())
-                {
-                    document.CopyTo(item);
-                    documentBytes = item.ToArray();
-                }
-                mission.MissionMedia.Add(new MissionMedium()
-                {
-                    Document = documentBytes,
-                });
-            });
-        }
-        var a = await _missionRepo.AddAsync(mission);
+        //if (createMissionDTO.Documents?.Count() > 0)
+        //{
+        //    createMissionDTO.Documents.ToList().ForEach(document =>
+        //    {
+        //        //byte[] documentBytes;
+        //        //using (var item = new MemoryStream())
+        //        //{
+        //        //    document.CopyTo(item);
+        //        //    documentBytes = item.ToArray();
+        //        //}
+        //        mission.MissionMedia.Add(new MissionMedium()
+        //        {
+        //            Document = document,
+        //        });
+        //    });
+        //}
+        await _missionRepo.AddAsync(mission);
         return true;
     }
 
@@ -155,13 +155,13 @@ public class MissionService : IMissionService
                 GoalStatus = 1,
                 OrganisationName = mission.MissionOrganisationName,
                 Ratings = mission.MissionRating,
-                Thumbnail = mission.MissionMedia.FirstOrDefault(x => x.Image != null).Image,
+                Thumbnail = mission.MissionMedia?.FirstOrDefault(x => x.Image != null)?.Image ?? null,
                 Country = mission.Country,
                 City = mission.City,
                 // CountryId = mission.Country,
                 // CityId = mission.City,
                 Status = mission.Status,
-                Skills = mission.MissionSkills?.Split(",").ToList(),
+                Skills = mission.MissionSkills?.Split(",").ToList() ?? null,
                 missionUserDTO = new MissionUserDTO()
                 {
                     UserId = userId,

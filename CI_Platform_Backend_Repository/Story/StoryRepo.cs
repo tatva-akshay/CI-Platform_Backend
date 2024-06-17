@@ -12,9 +12,9 @@ public class StoryRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Story>
         _dbContext = dbContext;
     }
 
-    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.Story>> GetStoriesAsync(string missionTitle)
+    public async Task<List<CI_Platform_Backend_DBEntity.DbModels.Story>> GetStoriesAsync()
     {
-        return await _dbContext.Stories.Where(s => s.MissionTitle == missionTitle).Include(x=>x.StoryMedia).Include(x=>x.User).ToListAsync();
+        return await _dbContext.Stories.Include(x=>x.StoryMedia).Include(x=>x.User).ToListAsync();
     }
     public async Task<CI_Platform_Backend_DBEntity.DbModels.Story> GetStoryAsync(long storyId)
     {

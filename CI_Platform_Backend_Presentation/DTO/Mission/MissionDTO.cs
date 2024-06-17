@@ -28,7 +28,7 @@ public class MissionDTO
 
     public int? Ratings { get; set; }
 
-    public byte[] Thumbnail { get; set; }
+    public byte[]? Thumbnail { get; set; }
 
     public string Country { get; set; }
 
@@ -40,7 +40,7 @@ public class MissionDTO
 
     public int Status { get; set; }
 
-    public List<string> Skills { get; set; } = new List<string>();
+    public List<string>? Skills { get; set; } = new List<string>();
 
     public MissionUserDTO missionUserDTO { get; set; }
 

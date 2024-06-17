@@ -137,6 +137,26 @@ public class AuthController : ControllerBase
     }
 
     [HttpGet]
+    [Route("countries")]
+    public async Task<ActionResult> GetCountriesAsync()
+    {
+        _aPIResponse.IsSuccess = true;
+        _aPIResponse.StatusCode = HttpStatusCode.OK;
+        _aPIResponse.Result = await _authService.GetCountriesAsync();
+        return Ok(_aPIResponse);
+    }
+
+    [HttpGet]
+    [Route("cities")]
+    public async Task<ActionResult> GetCitiesAsync([FromQuery] long countryId)
+    {
+        _aPIResponse.IsSuccess = true;
+        _aPIResponse.StatusCode = HttpStatusCode.OK;
+        _aPIResponse.Result = await _authService.GetCitiesAsync(countryId);
+        return Ok(_aPIResponse);
+    }
+
+    [HttpGet]
     [Route("carousels")]
     public async Task<ActionResult> CarouselsAsync()
     {

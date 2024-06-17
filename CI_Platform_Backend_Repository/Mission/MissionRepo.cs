@@ -169,4 +169,11 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
         return relatedMissionDTOs;
     }
 
+    public async Task<string> GetThemeAsync(string title)
+    {
+        CI_Platform_Backend_DBEntity.DbModels.Mission mission = await _dbContext.Missions.FirstOrDefaultAsync(x=>x.MissionTitle.ToLower() == title.ToLower());
+        return mission != null && mission.MissionId > 0 ? mission.MissionTheme : "";
+    }
+
+
 }

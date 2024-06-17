@@ -7,10 +7,10 @@ public class CreateMissionDTO
 {
 
     [Required]
-    public long CountryId { get; set; }
+    public string Country { get; set; }
 
     [Required]
-    public long CityId { get; set; }
+    public string City { get; set; }
 
     [Required]
     [MaxLength(128)]
@@ -43,19 +43,19 @@ public class CreateMissionDTO
     public DateOnly? RegistrationDeadline { get; set; }
 
     [Required]
-    public long ThemeId { get; set; }
+    public string Theme { get; set; }
 
-    public List<long>? SkillIds { get; set; }
+    public List<string>? Skills { get; set; }
 
     public List<IFormFile>? Images { get; set; }
 
-    public List<IFormFile>? Documents { get; set; }
+    //public byte[][]? Documents { get; set; }
 
     [Required]
-    public int Availability { get; set; }
+    public string Availability { get; set; }
 
     [Required]
-    [Range(1, 2)]
+    [Range(0, 3)]
     public int MissionType { get; set; }
 
     public string? Goal { get; set; }    

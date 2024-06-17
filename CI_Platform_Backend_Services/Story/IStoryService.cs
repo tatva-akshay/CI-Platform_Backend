@@ -8,7 +8,7 @@ public interface IStoryService
 
     Task<bool> IsValidAsync(long missionId, long userId);
 
-    Task<List<StoryDTO>> GetAllAsync(long missionId);
+    Task<List<StoryDTO>> GetAllAsync();
     
     Task<StoryDetailsDTO> GetAsync(long storyId, long userId);
 
