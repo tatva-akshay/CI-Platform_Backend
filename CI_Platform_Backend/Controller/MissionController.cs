@@ -100,11 +100,20 @@ public class MissionController : ControllerBase
     {
         if(await _userService.IsExistAsync(userId))
         {
-            return await _missionService.IsExistAsync(missionId) && await _missionService.IsValidRegistraionCriteria(missionId, userId) ?
-                Ok(await _missionService.ApplyAsync(userId, missionId)) :
-                NotFound();
+            if (await _missionService.IsExistAsync(missionId) && await _missionService.IsValidRegistraionCriteria(missionId, userId))
+            {
+                _aPIResponse.IsSuccess = true;
+                _aPIResponse.StatusCode = System.Net.HttpStatusCode.OK;
+                _aPIResponse.Result = await _missionService.ApplyAsync(userId, missionId);
+                return Ok(_aPIResponse);
+            }
+            _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+            _aPIResponse.ErrorMessages = ["Mission does not Exists or Invalid User to apply"];
+            return NotFound(_aPIResponse);
         }
-        return Unauthorized();
+        _aPIResponse.StatusCode = System.Net.HttpStatusCode.NotFound;
+        _aPIResponse.ErrorMessages = ["User does not Exists"];
+        return Unauthorized(_aPIResponse);
     }
 
     [HttpPost]

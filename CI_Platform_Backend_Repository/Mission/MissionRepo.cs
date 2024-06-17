@@ -21,6 +21,7 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
     public async Task<CI_Platform_Backend_DBEntity.DbModels.Mission> GetWithAllDataAsync(long userId, long missionId)
     {
         return await _dbContext.Missions
+            .Include(x=>x.MissionApplications)
             .Include(x=>x.MissionMedia)
             .Include(x=>x.MissionGoals)
             .Include(x=>x.MissionFavs.Where(x=>x.UserId == userId))
@@ -100,7 +101,7 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
         relatedMissionDTOs.AddRange(await _dbContext.Missions.Where(x=>x.Country == mission.Country && x.MissionId != missionId && !relatedMissionDTOs.Select(x=>x.MissionId).Contains(x.MissionId)).Take(3).Select(x=>new RelatedMissionDTO()
         {
             MissionId = x.MissionId,
-            Status = x.Status,
+            Thumbnail = x.MissionMedia.FirstOrDefault(x => x.Image != null).Image,
             City = x.City,
             Country = x.Country,
             Title = x.MissionTitle,
@@ -113,7 +114,9 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
             TotalSeats = x.TotalSeats.Value,
             SeatsLeft = x.TotalSeats.Value - x.Volunteers.Count,
             IsFavourite = x.MissionFavs.Any(x=>x.UserId == userId),
+            IsApplied = x.Volunteers.Any(x=>x.UserId == userId),
             Theme = x.MissionTheme,
+            Goal = x.MissionGoals.FirstOrDefault().Goal
         }).ToListAsync());
         if(relatedMissionDTOs.Count>=3)
         {
@@ -122,7 +125,7 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
         relatedMissionDTOs.AddRange(await _dbContext.Missions.Where(x=>x.City == mission.City && x.MissionId != missionId && !relatedMissionDTOs.Select(x=>x.MissionId).Contains(x.MissionId)).Take(3 - relatedMissionDTOs.Count).Select(x=>new RelatedMissionDTO()
         {
             MissionId = x.MissionId,
-            Status = x.Status,
+            Thumbnail = x.MissionMedia.FirstOrDefault(x => x.Image != null).Image,
             City = x.City,
             Country = x.Country,
             Title = x.MissionTitle,
@@ -134,8 +137,10 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
             RegistrationDeadline = x.MissionRegistrationDeadline.Value,
             TotalSeats = x.TotalSeats.Value,
             SeatsLeft = x.TotalSeats.Value - x.Volunteers.Count,
-            IsFavourite = x.MissionFavs.Any(x=>x.UserId == userId),
+            IsFavourite = x.MissionFavs.Any(x => x.UserId == userId),
+            IsApplied = x.Volunteers.Any(x => x.UserId == userId),
             Theme = x.MissionTheme,
+            Goal = x.MissionGoals.FirstOrDefault().Goal
         }).ToListAsync());
         if(relatedMissionDTOs.Count>=3)
         {
@@ -144,7 +149,7 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
         relatedMissionDTOs.AddRange(await _dbContext.Missions.Where(x=>x.MissionTheme == mission.MissionTheme && x.MissionId != missionId && !relatedMissionDTOs.Select(x=>x.MissionId).Contains(x.MissionId)).Take(3 - relatedMissionDTOs.Count).Select(x=>new RelatedMissionDTO()
         {
             MissionId = x.MissionId,
-            Status = x.Status,
+            Thumbnail = x.MissionMedia.FirstOrDefault(x => x.Image != null).Image,
             City = x.City,
             Country = x.Country,
             Title = x.MissionTitle,
@@ -156,11 +161,12 @@ public class MissionRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Miss
             RegistrationDeadline = x.MissionRegistrationDeadline.Value,
             TotalSeats = x.TotalSeats.Value,
             SeatsLeft = x.TotalSeats.Value - x.Volunteers.Count,
-            IsFavourite = x.MissionFavs.Any(x=>x.UserId == userId),
+            IsFavourite = x.MissionFavs.Any(x => x.UserId == userId),
+            IsApplied = x.Volunteers.Any(x => x.UserId == userId),
             Theme = x.MissionTheme,
+            Goal = x.MissionGoals.FirstOrDefault().Goal
         }).ToListAsync());
         return relatedMissionDTOs;
     }
-
 
 }

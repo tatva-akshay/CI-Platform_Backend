@@ -55,4 +55,6 @@ public class MissionDetailsDTO
     public bool IsFavourite { get; set; }
 
     public string? Goal { get; set; }
+
+    public bool? IsApplied { get; set; }
 }

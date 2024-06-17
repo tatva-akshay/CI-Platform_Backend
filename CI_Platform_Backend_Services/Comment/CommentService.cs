@@ -1,3 +1,4 @@
+using CI_Platform_Backend_DBEntity.DbModels;
 using CI_Platform_Backend_Presentation.DTO.Comment;
 using CI_Platform_Backend_Repository.Comment;
 using CI_Platform_Backend_Repository.Mission;
@@ -27,6 +28,14 @@ public class CommentService : ICommentService
 
     public async Task<bool> AddAsync(CreateCommentDTO createCommentDTO)
     {
+        CI_Platform_Backend_DBEntity.DbModels.Comment comment = await _commentRepo.GetAsync(x => x.UserId == createCommentDTO.UserId && x.MissionId == createCommentDTO.MissionId);
+
+        if(comment != null && comment.CommentId > 0)
+        {
+            comment.Comment1 = createCommentDTO.Comment;
+            return await _commentRepo.UpdateAsync(comment);
+        }
+
         CI_Platform_Backend_DBEntity.DbModels.User user = await _userRepo.GetAsync(x => x.UserId == createCommentDTO.UserId);
         
         if(user == null || user.UserId == 0)

@@ -22,7 +22,8 @@ public class CommentRepo : Repository<CI_Platform_Backend_DBEntity.DbModels.Comm
             UserId = c.UserId,
             UserName = c.UserName,
             Comment = c.Comment1,
-            CreatedAt = c.CreatedAt
+            CreatedAt = c.CreatedAt,
+            Avatar = c.User.Avatar
         }).ToListAsync();
     }
 

@@ -6,6 +6,8 @@ public class CommentDTO
 
     public long UserId { get; set; }
 
+    public byte[]? Avatar {  get; set; }
+
     public string UserName { get; set; }
 
     public string Comment { get; set; }

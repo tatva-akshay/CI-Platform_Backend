@@ -4,7 +4,7 @@ public class RelatedMissionDTO
 {
     public long MissionId { get; set; }
 
-    public int Status { get; set; }
+    public byte[]? Thumbnail { get; set; }
 
     public string City { get; set; }
 
@@ -30,6 +30,9 @@ public class RelatedMissionDTO
 
     public bool IsFavourite { get; set; }
 
+    public bool IsApplied { get; set; }
+
     public string Theme { get; set; }
 
+    public string? Goal {  get; set; }
 }

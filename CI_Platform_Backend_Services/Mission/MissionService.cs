@@ -205,15 +205,16 @@ public class MissionService : IMissionService
             Skills = mission.MissionSkills?.Split(", ", StringSplitOptions.RemoveEmptyEntries).ToList() ?? new List<string>(),
             Availability = mission.MissionAvailability,
             RatingCount = mission.MissionRatingCount!= null? mission.MissionRatingCount.Value : 0,
-            RecentVolunteers = mission.Volunteers != null ? mission.Volunteers.Select(x=>new RecentVolunteerDTO()
-                {
-                    UserId = x.UserId,
-                    UserName = x.User.FirstName + " " + x.User.LastName,
-                    ProfileImage = x.User.Avatar,
-                }).ToList() : null,
+            RecentVolunteers = mission.Volunteers != null ? mission.Volunteers.Select(x => new RecentVolunteerDTO()
+            {
+                UserId = x.UserId,
+                UserName = x.User.FirstName + " " + x.User.LastName,
+                ProfileImage = x.User.Avatar,
+            }).ToList() : new List<RecentVolunteerDTO>(),
             VolunteerCount = mission.Volunteers != null ? mission.Volunteers.Count : 0,
             IsFavourite = mission.MissionFavs.Count != 0,
             Goal = mission.MissionGoals !=null ? mission.MissionGoals.FirstOrDefault()?.Goal : null,
+            IsApplied = mission.MissionApplications.Any(x=>x.UserId==userId)
         };
     }
 
